@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: true,
+
+  titleColor: 'red',
+
+  apiUrl: 'http://localhost:4200/assets'
 };

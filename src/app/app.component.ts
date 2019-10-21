@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemesService } from './themes/themes.service';
+import { ThemesService } from './_themesModule/_services/themes.service';
 import { interval } from 'rxjs';
 
 
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
                     this.themesService.setTheme('default');
                 }
             }
-        )
+        );
     }
 
 }

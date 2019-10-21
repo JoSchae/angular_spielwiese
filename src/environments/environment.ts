@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  titleColor: "red"
+
+  titleColor: 'red',
+
+  apiUrl: 'http://localhost:4200/assets'
 };
 
 /*

@@ -1,7 +1,7 @@
 import { Directive, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ThemesService } from './themes.service';
+import { ThemesService } from '../_services/themes.service';
 import { Theme } from 'src/assets/themes/symbols';
 
 @Directive({

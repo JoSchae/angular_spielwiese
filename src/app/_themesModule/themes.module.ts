@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ThemesDirective } from './themes.directive';
+import { ThemesDirective } from './_directves/themes.directive';
 import { ThemeOptions, THEMES, ACTIVE_THEME } from 'src/assets/themes/symbols';
 
 
