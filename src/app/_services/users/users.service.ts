@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsersService {
 
-    usersUrl = `${environment.apiUrl}/data/users.json`;
+    usersUrl = `${environment.apiUrl}/${environment.usersEndpoint}/users.json`;
 
     constructor(private _http: HttpClient) { }
 

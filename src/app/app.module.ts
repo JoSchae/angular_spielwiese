@@ -15,6 +15,8 @@ import { UserEffects } from './_store/effects/user.effects';
 import { ConfigEffects } from './_store/effects/config.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ThemeEffects } from './_store/effects/theme.effects';
+import { customEffects } from './_store/effects';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     }),
     // StoreModule
     StoreModule.forRoot(appReducer),
-    EffectsModule.forRoot([UserEffects, ConfigEffects]),
+    EffectsModule.forRoot(customEffects),
     StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     // Global Routing

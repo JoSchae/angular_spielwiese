@@ -12,5 +12,9 @@
     Angular - NGRX / {{ (config$ | async)?.adminName }}
 </a>
 
+<ul *ngFor="let theme of (themes$ | async)">
+    <li>{{theme.name}}</li>
+</ul>
+
 
 <router-outlet></router-outlet>

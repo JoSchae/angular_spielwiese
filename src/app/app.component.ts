@@ -5,6 +5,8 @@ import { IAppState } from './_store/state/app.state';
 import { Store, select } from '@ngrx/store';
 import { selectConfig } from './_store/selectors/config.selector';
 import { GetConfig } from './_store/actions/config.actions';
+import { selectThemeList } from './_store/selectors/theme.selector';
+import { GetThemes } from './_store/actions/theme.actions';
 
 
 @Component({
@@ -15,11 +17,13 @@ import { GetConfig } from './_store/actions/config.actions';
 export class AppComponent implements OnInit {
     title = 'template-app';
     config$ = this._store.pipe(select(selectConfig));
+    themes$ = this._store.pipe(select(selectThemeList));
 
     constructor(private _store: Store<IAppState>, private themesService: ThemesService) { }
 
     ngOnInit() {
         this._store.dispatch(new GetConfig());
+        this._store.dispatch(new GetThemes());
 
         interval(10000).subscribe(
             () => {

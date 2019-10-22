@@ -1,0 +1,18 @@
+{
+    "themes": [
+        {
+            "name": "default",
+            "properties": {
+                "--override-title": "blue",
+                "--override-background-color": "orange"
+            }
+        },
+        {
+            "name": "mandantOne",
+            "properties": {
+                "--override-title": "red",
+                "--override-background-color": "black"
+            }
+        }
+    ]
+}
