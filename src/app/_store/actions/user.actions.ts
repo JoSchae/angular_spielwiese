@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { IUser } from 'src/app/_models/user';
+import { IUser } from 'src/app/_models/user.interface';
 
 export enum EUserActions {
     GetUsers = '[User] Get Users',

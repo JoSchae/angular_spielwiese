@@ -9,7 +9,12 @@ import { ThemesModule } from './_themesModule/themes.module';
 import { mandantOneTheme, defaultTheme } from 'src/assets/themes';
 import { ChildComponentComponent } from './test/child-component/child-component.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './_store';
+import { appReducer } from './_store/reducers/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './_store/effects/user.effects';
+import { ConfigEffects } from './_store/effects/config.effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -23,15 +28,15 @@ import { reducers, metaReducers } from './_store';
         themes: [defaultTheme, mandantOneTheme],
         active: 'default'
     }),
+    // StoreModule
+    StoreModule.forRoot(appReducer),
+    EffectsModule.forRoot([UserEffects, ConfigEffects]),
+    StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    // Global Routing
     AppRoutingModule,
+    // Service Worker
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true
-      }
-    })
   ],
   providers: [],
   bootstrap: [AppComponent]
