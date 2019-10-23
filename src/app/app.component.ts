@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemesService } from './_themesModule/_services/themes.service';
 import { interval } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { IAppState } from './_store/state/app.state';
+import { selectThemeList, selectSelectedTheme } from './_store/selectors/theme.selector';
+import { GetThemes, GetTheme } from './_store/actions/theme.actions';
 
 
 @Component({
@@ -11,19 +15,34 @@ import { interval } from 'rxjs';
 export class AppComponent implements OnInit {
     title = 'template-app';
 
-    constructor(private themesService: ThemesService) { }
+    themes$ = this._store.pipe(select(selectThemeList));
+    theme$ = this._store.pipe(select(selectSelectedTheme));
+
+    constructor(
+        private _store: Store<IAppState>,
+        ) { }
 
     ngOnInit() {
-        interval(10000).subscribe(
-            () => {
-                const test = this.themesService.getActiveTheme();
-                if (test.name === 'default') {
-                    this.themesService.setTheme('mandantOne');
+        this._store.dispatch(new GetThemes())
+        interval(5000).subscribe(
+            x => {
+                if (x % 2 !== 0) {
+                    this._store.dispatch(new GetTheme('default'));
                 } else {
-                    this.themesService.setTheme('default');
+                    this._store.dispatch(new GetTheme('mandantOne'));
                 }
             }
         );
+        // interval(10000).subscribe(
+        //     () => {
+        //         const test = this.themesService.getActiveTheme();
+        //         if (test.name === 'default') {
+        //             this.themesService.setTheme('mandantOne');
+        //         } else {
+        //             this.themesService.setTheme('default');
+        //         }
+        //     }
+        // );
     }
 
 }

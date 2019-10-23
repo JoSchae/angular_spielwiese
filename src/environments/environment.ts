@@ -3,11 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+    production: false,
 
-  titleColor: 'red',
+    titleColor: 'red',
 
-  apiUrl: 'http://localhost:4200/assets'
+    apiUrl: 'http://localhost:4200/assets',
+
+    themeEndpoint: 'themes',
 };
 
 /*

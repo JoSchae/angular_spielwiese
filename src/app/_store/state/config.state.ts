@@ -1,4 +1,4 @@
-import { IConfig } from 'src/app/_interfaces/config';
+import { IConfig } from 'src/app/_models/config';
 
 export interface IConfigState {
     config: IConfig;

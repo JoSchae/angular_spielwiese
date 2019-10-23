@@ -43,6 +43,8 @@ npm add @angular/pwa
 
 add crossorigin="use-credentials" to manifest in index.html
 
+npm install @ngrx/core @ngrx/store @ngrx/effects @ngrx/store-devtools @ngrx/router-store --save
+
 
 ## TSLint and what we do
 

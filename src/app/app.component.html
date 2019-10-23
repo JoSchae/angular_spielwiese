@@ -2,11 +2,17 @@
     Title
 </p>
 
-<div tmpThemes>
+<div >
     <div>
         <tmp-child-component></tmp-child-component>
     </div>
 </div>
+
+<div *ngFor="let theme of (themes$ | async)">
+    <li>{{theme.name}}</li>
+</div>
+SelectedTheme:
+<tmp-test-store [theme]="theme$ | async"></tmp-test-store>
 
 
 <router-outlet></router-outlet>
