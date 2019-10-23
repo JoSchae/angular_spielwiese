@@ -1,4 +1,9 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { IAppState } from '../_store/state/app.state';
+import { selectSelectedTheme } from '../_store/selectors/theme.selector';
+import { GetTheme } from '../_store/actions/theme.actions';
+import { ITheme } from '../_models/theme';
 
 @Component({
     selector: 'tmp-test-store',
@@ -7,26 +12,18 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 })
 export class TestStoreComponent implements OnInit, OnChanges {
 
-    @Input() theme: any;
-    propertiesKeys = [];
-    propertiesValues = [];
+    // theme$ = this._store.pipe(select(selectSelectedTheme));
+    @Input() theme: ITheme;
 
-    constructor() { }
+    constructor(private _store: Store<IAppState>) { }
 
     ngOnInit() {
-
+        // this._store.dispatch(new GetTheme('default'));
 
     }
 
     ngOnChanges() {
-        if (this.theme) {
-            Object.getOwnPropertyNames(this.theme.properties).forEach(
-                key => {
-                    this.propertiesKeys.push(key);
-                    this.propertiesValues.push(this.theme[key]);
-                }
-            );
-        }
+
     }
 
 }

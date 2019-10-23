@@ -10,9 +10,12 @@
 
 <div *ngFor="let theme of (themes$ | async)">
     <li>{{theme.name}}</li>
+
+<!-- <tmp-test-store [theme]="theme"></tmp-test-store> -->
 </div>
 SelectedTheme:
-<tmp-test-store [theme]="theme$ | async"></tmp-test-store>
+<span *ngIf="(theme$ | async) as theme">{{theme.name}}</span>
+
 
 
 <router-outlet></router-outlet>

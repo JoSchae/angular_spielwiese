@@ -3,7 +3,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IThemeHttp } from 'src/app/_models/http/theme-http.interface';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
+import { ITheme } from 'src/app/_models/theme';
 
 @Injectable({
     providedIn: 'root'
