@@ -18,6 +18,12 @@ export const themeReducers = (
                 themes: action.payload
             };
         }
+        case EThemeActions.SetThemePropertiesSuccess: {
+            return {
+                ...state,
+                themes: action.payload
+            };
+        }
 
         default: {
             return state;

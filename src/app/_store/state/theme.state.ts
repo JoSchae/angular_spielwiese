@@ -6,12 +6,18 @@ export interface IThemeState {
 }
 
 export const initialThemeState: IThemeState = {
-    themes: null,
-    selectedTheme:  {
-        "name": "default",
-        "properties": {
-            "--override-title": "blue",
-            "--override-background-color": "orange"
-        }
+    themes: [],
+    selectedTheme: {
+        name: 'default',
+        properties: [
+            {
+                property: 'title',
+                value: 'blue'
+            },
+            {
+                property: 'background-color',
+                value: 'orange'
+            }
+        ]
     }
 };

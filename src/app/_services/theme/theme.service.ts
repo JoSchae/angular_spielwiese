@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IThemeHttp } from 'src/app/_models/http/theme-http.interface';
 import { tap } from 'rxjs/operators';
+import { ITheme } from '../../_models/theme.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -17,4 +18,5 @@ export class ThemeService {
     getThemes(): Observable<IThemeHttp> {
         return this._http.get<IThemeHttp>(this.themesUrl).pipe(tap(val => console.log('service', val)));
     }
+
 }

@@ -1,4 +1,7 @@
 export interface ITheme {
     name: string;
-    properties: any;
+    properties: {
+        property: string,
+        value: string
+    }[];
 }

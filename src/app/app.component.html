@@ -1,21 +1,26 @@
+<!-- <ng-container *ngIf="(initialStateLoaded$ | async)"> -->
 <p class="title background">
     Title
 </p>
 
-<div >
+<div>
     <div>
         <tmp-child-component></tmp-child-component>
     </div>
 </div>
 
-<div *ngFor="let theme of (themes$ | async)">
-    <li>{{theme.name}}</li>
-
-<!-- <tmp-test-store [theme]="theme"></tmp-test-store> -->
+<div *ngIf="(themes$ | async) as themes">
+    Themes:
+    <div *ngFor="let theme of themes">
+        <tmp-test-store [theme]="theme"></tmp-test-store>
+    </div>
+    <span *ngIf="(selectedTheme$ | async) as selectedTheme">
+        Selected Theme:
+        <li>{{selectedTheme.name}}</li>
+        <div *ngFor="let property of selectedTheme.properties">
+            <li>{{property.property}} : {{property.value}}</li>
+        </div>
+    </span>
 </div>
-SelectedTheme:
-<span *ngIf="(theme$ | async) as theme">{{theme.name}}</span>
-
-
-
 <router-outlet></router-outlet>
+<!-- </ng-container> -->

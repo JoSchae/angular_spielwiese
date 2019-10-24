@@ -25,10 +25,12 @@ export class ThemeEffects {
         map(action => action.payload),
         tap(_ => console.log(_)),
         withLatestFrom(this._store.pipe(select(selectThemeList))),
+        // switchMap to dispatch action GetThemes, if themes is undefined/null
         switchMap(([name, themes]) => {
             console.log(name, themes);
             const selectedTheme = themes.find(theme => theme.name === name);
             console.log('selectedTheme', selectedTheme)
+            this._themeService.setSelectedTheme(selectedTheme);
             return of(new GetThemeSuccess(selectedTheme));
         })
     );

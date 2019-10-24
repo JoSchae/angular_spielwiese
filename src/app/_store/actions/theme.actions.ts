@@ -5,7 +5,9 @@ export enum EThemeActions {
     GetTheme = '[Theme] Get Theme',
     GetThemeSuccess = '[Theme] Get Theme Success',
     GetThemes = '[Theme] Get Themes',
-    GetThemesSuccess = '[Theme] Get Themes Success'
+    GetThemesSuccess = '[Theme] Get Themes Success',
+    SetThemeProperties = '[Theme] Set Theme Properties',
+    SetThemePropertiesSuccess = '[Theme] Set Theme Properties Success',
 }
 
 export class GetTheme implements Action {
@@ -27,4 +29,16 @@ export class GetThemesSuccess implements Action {
     constructor(public payload: ITheme[]) { }
 }
 
-export type ThemeActions = GetTheme | GetThemeSuccess | GetThemes | GetThemesSuccess;
+export class SetThemeProperties implements Action {
+    public readonly type = EThemeActions.SetThemeProperties;
+}
+
+export class SetThemePropertiesSuccess implements Action {
+    public readonly type = EThemeActions.SetThemePropertiesSuccess;
+    constructor(public payload: ITheme[]) { }
+}
+
+export type ThemeActions =
+    GetTheme | GetThemeSuccess |
+    GetThemes | GetThemesSuccess |
+    SetThemeProperties | SetThemePropertiesSuccess;
