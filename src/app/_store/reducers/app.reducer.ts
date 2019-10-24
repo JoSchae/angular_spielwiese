@@ -5,7 +5,7 @@ import { userReducers } from './user.reducer';
 import { configReducers } from './config.reducer';
 import { themeReducers } from './theme.reducer';
 
-export const appReducer: ActionReducerMap<IAppState, any> = {
+export const appReducers: ActionReducerMap<IAppState, any> = {
     router: routerReducer,
     users: userReducers,
     config: configReducers,

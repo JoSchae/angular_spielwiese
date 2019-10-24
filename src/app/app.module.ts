@@ -9,36 +9,41 @@ import { ThemesModule } from './_themesModule/themes.module';
 import { mandantOneTheme, defaultTheme } from 'src/assets/themes';
 import { ChildComponentComponent } from './test/child-component/child-component.component';
 import { StoreModule } from '@ngrx/store';
-import { appReducer } from './_store/reducers/app.reducer';
+// import { reducers, metaReducers } from './_store';
+import { appReducers } from './_store/reducers/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from './_store/effects/user.effects';
-import { ConfigEffects } from './_store/effects/config.effects';
+import { effects } from './_store/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { ThemeEffects } from './_store/effects/theme.effects';
-import { customEffects } from './_store/effects';
+import { TestStoreComponent } from './test-store/test-store.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChildComponentComponent
+    ChildComponentComponent,
+    TestStoreComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ThemesModule.forRoot({
-        themes: [defaultTheme, mandantOneTheme],
-        active: 'default'
-    }),
-    // StoreModule
-    StoreModule.forRoot(appReducer),
-    EffectsModule.forRoot(customEffects),
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot(effects),
     StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    // Global Routing
+    // ThemesModule.forRoot({
+    //     themes: [defaultTheme, mandantOneTheme],
+    //     active: 'default'
+    // }),
     AppRoutingModule,
     // Service Worker
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    // StoreModule.forRoot(reducers, {
+    //   metaReducers,
+    //   runtimeChecks: {
+    //     strictStateImmutability: true,
+    //     strictActionImmutability: true
+    //   }
+    // })
   ],
   providers: [],
   bootstrap: [AppComponent]

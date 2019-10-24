@@ -2,19 +2,20 @@
     Title
 </p>
 
-<div tmpThemes>
+<div >
     <div>
         <tmp-child-component></tmp-child-component>
     </div>
 </div>
 
-<a class="navbar-brand" [routerLink]="">
-    Angular - NGRX / {{ (config$ | async)?.adminName }}
-</a>
-
-<ul *ngFor="let theme of (themes$ | async)">
+<div *ngFor="let theme of (themes$ | async)">
     <li>{{theme.name}}</li>
-</ul>
+
+<!-- <tmp-test-store [theme]="theme"></tmp-test-store> -->
+</div>
+SelectedTheme:
+<span *ngIf="(theme$ | async) as theme">{{theme.name}}</span>
+
 
 
 <router-outlet></router-outlet>

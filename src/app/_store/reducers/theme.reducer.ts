@@ -6,20 +6,21 @@ export const themeReducers = (
     action: ThemeActions
 ): IThemeState => {
     switch (action.type) {
+        case EThemeActions.GetThemeSuccess: {
+            return {
+                ...state,
+                selectedTheme: action.payload
+            };
+        }
         case EThemeActions.GetThemesSuccess: {
             return {
                 ...state,
                 themes: action.payload
             };
         }
-        case EThemeActions.GetThemeSuccess: {
-            return {
-                ...state,
-                activeTheme: action.payload
-            };
-        }
 
-        default:
+        default: {
             return state;
+        }
     }
-}
+};

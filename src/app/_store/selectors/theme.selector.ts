@@ -9,7 +9,7 @@ export const selectThemeList = createSelector(
     (state: IThemeState) => state.themes
 );
 
-export const selectActiveTheme = createSelector(
+export const selectSelectedTheme = createSelector(
     selectThemes,
-    (state: IThemeState) => state.activeTheme
+    (state: IThemeState) => state.selectedTheme
 );

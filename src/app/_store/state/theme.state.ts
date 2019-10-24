@@ -2,10 +2,16 @@ import { ITheme } from 'src/app/_models/theme.interface';
 
 export interface IThemeState {
     themes: ITheme[];
-    activeTheme: ITheme;
+    selectedTheme: ITheme;
 }
 
 export const initialThemeState: IThemeState = {
     themes: null,
-    activeTheme: null
+    selectedTheme:  {
+        "name": "default",
+        "properties": {
+            "--override-title": "blue",
+            "--override-background-color": "orange"
+        }
+    }
 };
