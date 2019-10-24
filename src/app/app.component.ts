@@ -8,6 +8,7 @@ import { GetThemes, GetTheme } from './_store/actions/theme.actions';
 import { switchMap } from 'rxjs/operators';
 import { selectConfig } from './_store/selectors/config.selector';
 import { GetConfig } from './_store/actions/config.actions';
+import { timeout } from 'q';
 
 
 @Component({
@@ -18,9 +19,9 @@ import { GetConfig } from './_store/actions/config.actions';
 export class AppComponent implements OnInit {
     title = 'template-app';
     config$ = this._store.pipe(select(selectConfig));
-    // themes$ = this._store.pipe(select(selectThemeList));
-    theme$ = this._store.pipe(select(selectSelectedTheme));
-    // theme$ = this._store.pipe(select(selectSelectedTheme));
+    themes$ = this._store.pipe(select(selectThemeList));
+    selectedTheme$ = this._store.pipe(select(selectSelectedTheme));
+
 
     constructor(
         private _store: Store<IAppState>,
@@ -29,30 +30,11 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this._store.dispatch(new GetConfig());
         this._store.dispatch(new GetThemes());
-        // this._store.dispatch(new GetTheme('default'));
-        // this._store.dispatch(new GetTheme('default'));
+        setTimeout(() => {this._store.dispatch(new GetTheme('default'));}, 1000);
 
-        // interval(10000).pipe(
-        //     switchMap(() => this.theme$),
-        // ).subscribe(
-        //     x => {
-        //         if (x.name === 'default') {
-        //             this._store.dispatch(new GetTheme('default'));
-        //         } else  {
-        //             this._store.dispatch(new GetTheme('mandantOne'));
-        //         }
-        //     }
-        // );
-        // interval(10000).subscribe(
-        //     () => {
-        //         const test = this.themesService.getActiveTheme();
-        //         if (test.name === 'default') {
-        //             this.themesService.setTheme('mandantOne');
-        //         } else {
-        //             this.themesService.setTheme('default');
-        //         }
-        //     }
-        // );
+
+
+
     }
 
 }

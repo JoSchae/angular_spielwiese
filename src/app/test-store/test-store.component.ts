@@ -12,13 +12,11 @@ import { ITheme } from '../_models/theme.interface';
 })
 export class TestStoreComponent implements OnInit, OnChanges {
 
-    // theme$ = this._store.pipe(select(selectSelectedTheme));
     @Input() theme: ITheme;
 
     constructor(private _store: Store<IAppState>) { }
 
     ngOnInit() {
-        // this._store.dispatch(new GetTheme('default'));
 
     }
 
