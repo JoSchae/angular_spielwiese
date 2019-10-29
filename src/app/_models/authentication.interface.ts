@@ -1,4 +1,4 @@
 export interface IAuthentication {
-    bearerToken: string;
+    jwtToken: string;
     isLoggedIn: boolean;
 }

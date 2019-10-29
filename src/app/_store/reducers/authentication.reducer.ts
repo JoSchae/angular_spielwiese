@@ -15,7 +15,7 @@ export const authenticationReducers = (
         case EAuthenticationActions.GetIsLoggedInSuccess: {
             return {
                 ...state,
-                authentication: { bearerToken: state.authentication.bearerToken, isLoggedIn: action.payload }
+                authentication: { jwtToken: state.authentication.jwtToken, isLoggedIn: action.payload }
             };
         }
     }

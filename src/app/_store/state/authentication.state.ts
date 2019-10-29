@@ -5,5 +5,8 @@ export interface IAuthenticationState {
 }
 
 export const initialAuthenticationState: IAuthenticationState = {
-        authentication: null
+        authentication: {
+            jwtToken: null,
+            isLoggedIn: false
+        }
 };

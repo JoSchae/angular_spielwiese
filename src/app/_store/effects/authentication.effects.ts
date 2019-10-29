@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
 import { Effect, ofType, Actions } from '@ngrx/effects';
 import { GetAuthentication, EAuthenticationActions, GetAuthenticationSuccess, GetIsLoggedIn, GetIsLoggedInSuccess } from '../actions/authentication.actions';
-import { switchMap, concatMap, withLatestFrom, map, tap } from 'rxjs/operators';
+import { switchMap, concatMap, withLatestFrom, map, tap, concat, mapTo } from 'rxjs/operators';
 import { IAuthentication } from 'src/app/_models/authentication.interface';
 import { of } from 'rxjs';
 import { IAuthenticationHttp } from 'src/app/_models/http/authentication-http.interface';
@@ -17,20 +17,18 @@ export class AuthenticationEffects {
         private _authenticationService: AuthenticationService,
         private _actions$: Actions,
         private _store: Store<IAppState>
-        ) { }
+    ) { }
 
     @Effect()
     getAuthentication$ = this._actions$.pipe(
         ofType<GetAuthentication>(EAuthenticationActions.GetAuthentication),
-        switchMap(() => this._authenticationService.getBearerToken()),
-        switchMap((authenticationHttp: IAuthenticationHttp) => {
-            return of(new GetAuthenticationSuccess(authenticationHttp.authentication));
-        }),
-        // TODO: doesn't work because of async time difference :(
-        concatMap(() => this._store.pipe(select(selectSelectedAuthentication))),
-        switchMap((authentication: IAuthentication) => {
-            return of(new GetIsLoggedIn(authentication.bearerToken))
-        })
+        concatMap(action => this._authenticationService.getBearerToken().pipe(
+            tap<IAuthenticationHttp>(authenticationHttp => new GetAuthenticationSuccess(
+                authenticationHttp.authentication
+            )
+            )
+        )
+        )
     );
 
     @Effect()

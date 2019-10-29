@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { IAuthenticationHttp } from 'src/app/_models/http/authentication-http.interface';
 import { Subject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -20,7 +21,6 @@ export class AuthenticationService {
     }
 
     getBearerToken() {
-        console.log('http call')
         return this._http.get<IAuthenticationHttp>(this._authUrl);
     }
 
