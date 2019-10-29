@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { IAppState } from './_store/state/app.state';
 import { selectThemeList, selectSelectedTheme } from './_store/selectors/theme.selector';
 import { GetThemes, GetTheme } from './_store/actions/theme.actions';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, delay, concatMap, withLatestFrom } from 'rxjs/operators';
 import { selectConfig } from './_store/selectors/config.selector';
 import { GetConfig } from './_store/actions/config.actions';
 import { timeout } from 'q';
