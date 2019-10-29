@@ -1,0 +1,11 @@
+import { IAuthenticationState } from '../state/authentication.state';
+import { createSelector } from '@ngrx/store';
+import { IAppState } from '../state/app.state';
+
+const selectAuthentication = (state: IAppState) => state.authentication;
+
+
+export const selectSelectedAuthentication = createSelector(
+    selectAuthentication,
+    (state: IAuthenticationState) => state.authentication
+);

@@ -29,7 +29,7 @@ export class ThemeEffects {
         switchMap(([name, themes]) => {
             console.log(name, themes);
             const selectedTheme = themes.find(theme => theme.name === name);
-            console.log('selectedTheme', selectedTheme)
+            console.log('selectedTheme', selectedTheme);
             return of(new GetThemeSuccess(selectedTheme));
         })
     );

@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { ThemesModule } from './_themesModule/themes.module';
 import { mandantOneTheme, defaultTheme } from 'src/assets/themes';
 import { ChildComponentComponent } from './test/child-component/child-component.component';
 import { StoreModule } from '@ngrx/store';
@@ -21,7 +20,7 @@ import { TestStoreComponent } from './test-store/test-store.component';
   declarations: [
     AppComponent,
     ChildComponentComponent,
-    TestStoreComponent
+    TestStoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,20 +29,9 @@ import { TestStoreComponent } from './test-store/test-store.component';
     EffectsModule.forRoot(effects),
     StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    // ThemesModule.forRoot({
-    //     themes: [defaultTheme, mandantOneTheme],
-    //     active: 'default'
-    // }),
     AppRoutingModule,
     // Service Worker
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    // StoreModule.forRoot(reducers, {
-    //   metaReducers,
-    //   runtimeChecks: {
-    //     strictStateImmutability: true,
-    //     strictActionImmutability: true
-    //   }
-    // })
   ],
   providers: [],
   bootstrap: [AppComponent]
