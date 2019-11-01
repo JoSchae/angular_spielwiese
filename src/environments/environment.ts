@@ -5,14 +5,10 @@
 export const environment = {
     production: false,
 
-    titleColor: 'red',
+    apiUrl: 'http://localhost:4200/assets/test_data',
 
-    apiUrl: 'http://localhost:4200/assets',
-    proxyApiUrl: 'https://beta.zugportal.de/api',
-    authenticationEndpoint: 'auth',
+    authenticationEndpoint: 'authentication.json',
 
-    themeEndpoint: 'themes',
-    usersEndpoint: 'data'
 };
 
 /*

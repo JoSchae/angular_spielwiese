@@ -5,35 +5,37 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { mandantOneTheme, defaultTheme } from 'src/assets/themes';
-import { ChildComponentComponent } from './test/child-component/child-component.component';
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './_store/reducers/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './_store/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { TestStoreComponent } from './test-store/test-store.component';
 import { metaReducers } from './_store/reducers/meta.reducer';
+import { CookieService } from 'ngx-cookie-service';
+import { TestComponent } from './test-component/test.component';
+import { interceptors } from './_interceptors';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ChildComponentComponent,
-    TestStoreComponent,
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    StoreModule.forRoot(appReducers, { metaReducers }),
-    EffectsModule.forRoot(effects),
-    StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
-    AppRoutingModule,
-    // Service Worker
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        TestComponent,
+    ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        StoreModule.forRoot(appReducers, { metaReducers }),
+        EffectsModule.forRoot(effects),
+        StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
+        AppRoutingModule,
+        // Service Worker
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ],
+    providers: [
+        CookieService,
+        interceptors
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

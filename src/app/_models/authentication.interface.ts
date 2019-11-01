@@ -1,4 +1,4 @@
 export interface IAuthentication {
-    jwtToken: string;
+    token: string;
     isLoggedIn: boolean;
 }

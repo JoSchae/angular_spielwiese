@@ -1,12 +1,11 @@
 import { IAuthentication } from 'src/app/_models/authentication.interface';
 
 export interface IAuthenticationState {
-    authentication: IAuthentication;
+    token: string;
+    isLoggedIn: boolean;
 }
 
 export const initialAuthenticationState: IAuthenticationState = {
-        authentication: {
-            jwtToken: null,
-            isLoggedIn: false
-        }
+    token: null,
+    isLoggedIn: false
 };

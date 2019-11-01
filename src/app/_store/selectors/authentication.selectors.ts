@@ -7,5 +7,5 @@ const selectAuthentication = (state: IAppState) => state.authentication;
 
 export const selectSelectedAuthentication = createSelector(
     selectAuthentication,
-    (state: IAuthenticationState) => state.authentication
+    (state: IAuthenticationState) => ({token: state.token, isLoggedIn: state.isLoggedIn})
 );

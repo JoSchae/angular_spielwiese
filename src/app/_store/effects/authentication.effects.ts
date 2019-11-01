@@ -1,46 +1,36 @@
-import { Injectable } from "@angular/core";
+import { Effect, Actions, ofType } from "@ngrx/effects";
+import { Injectable } from '@angular/core';
 import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
-import { Effect, ofType, Actions } from '@ngrx/effects';
-import { GetAuthentication, EAuthenticationActions, GetAuthenticationSuccess, GetIsLoggedIn, GetIsLoggedInSuccess } from '../actions/authentication.actions';
-import { switchMap, concatMap, withLatestFrom, map, tap, concat, mapTo } from 'rxjs/operators';
-import { IAuthentication } from 'src/app/_models/authentication.interface';
-import { of } from 'rxjs';
-import { IAuthenticationHttp } from 'src/app/_models/http/authentication-http.interface';
+import { Store } from '@ngrx/store';
 import { IAppState } from '../state/app.state';
-import { Store, select } from '@ngrx/store';
-import { selectSelectedAuthentication } from '../selectors/authentication.selector';
+import { GetAuthentication, EAuthenticationActions, GetAuthenticationSuccess } from '../actions/authentication.actions';
+import { CookieService } from 'ngx-cookie-service';
+import { tap, switchMap } from 'rxjs/operators';
+import { of, Observable } from 'rxjs';
+import { IAuthenticationHttp } from 'src/app/_models/http/authentication-http.interface';
 
 @Injectable()
 export class AuthenticationEffects {
 
     constructor(
         private _authenticationService: AuthenticationService,
+        private _store: Store<IAppState>,
         private _actions$: Actions,
-        private _store: Store<IAppState>
+        private _cookieService: CookieService
     ) { }
 
     @Effect()
     getAuthentication$ = this._actions$.pipe(
         ofType<GetAuthentication>(EAuthenticationActions.GetAuthentication),
-        concatMap(action => this._authenticationService.getBearerToken().pipe(
-            tap<IAuthenticationHttp>(authenticationHttp => new GetAuthenticationSuccess(
-                authenticationHttp.authentication
-            )
-            )
+        switchMap<GetAuthentication, Observable<IAuthenticationHttp>>(_ => this._authenticationService.getToken().pipe(
+            tap(authenticationHttp => {
+                if (authenticationHttp.authentication.token) {
+                    this._cookieService.set('my-token-cookie', authenticationHttp.authentication.token);
+                }
+            })
+        )),
+        switchMap(authenticationHttp => of(new GetAuthenticationSuccess(authenticationHttp.authentication))
         )
-        )
-    );
-
-    @Effect()
-    getIsLoggedIn$ = this._actions$.pipe(
-        ofType<GetIsLoggedIn>(EAuthenticationActions.GetIsLoggedIn),
-        map(action => action.payload),
-        tap(bearerToken => this._authenticationService.setBearerToken(bearerToken)),
-        concatMap(() => of(this._authenticationService.setIsLoggedIn(true))),
-        switchMap(loggedIn => {
-            if (loggedIn) {
-                return of(new GetIsLoggedInSuccess(loggedIn));
-            }
-        })
     );
 }
+

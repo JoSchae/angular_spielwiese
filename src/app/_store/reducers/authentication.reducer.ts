@@ -9,14 +9,12 @@ export const authenticationReducers = (
         case EAuthenticationActions.GetAuthenticationSuccess: {
             return {
                 ...state,
-                authentication: action.payload
+                token: action.payload.token,
+                isLoggedIn: true
             };
         }
-        case EAuthenticationActions.GetIsLoggedInSuccess: {
-            return {
-                ...state,
-                authentication: { jwtToken: state.authentication.jwtToken, isLoggedIn: action.payload }
-            };
+        default: {
+            return state;
         }
     }
 }
