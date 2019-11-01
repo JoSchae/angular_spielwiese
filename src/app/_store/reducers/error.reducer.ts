@@ -1,15 +1,18 @@
-import { ErrorActions, EErrorAction } from '../actions/error.actions';
+import { createReducer, on, Action } from '@ngrx/store';
+import * as errorActions from '../actions/error.actions';
 
-export const errorReducers = (
-    state: any = null,
-    action: ErrorActions
-): any => {
-    switch (action.type) {
-        case EErrorAction.AddError: {
-            return action.payload;
-        }
-        default: {
-            return action.payload;
-        }
-    }
+const errorReducerInternal = createReducer(
+    null,
+    on(
+        errorActions.addError, (state, { payload }) => ({
+            payload
+        })
+    )
+);
+
+export function errorReducer(
+    state: any | undefined,
+    action: Action
+) {
+    return errorReducerInternal(state, action);
 }

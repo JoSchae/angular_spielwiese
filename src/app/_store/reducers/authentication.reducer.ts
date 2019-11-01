@@ -1,20 +1,20 @@
 import { initialAuthenticationState, IAuthenticationState } from '../state/authentication.state';
-import { AuthenticationActions, EAuthenticationActions } from '../actions/authentication.actions';
+import * as AuthenticationActions from '../actions/authentication.actions';
+import { createReducer, on, Action } from '@ngrx/store';
 
-export const authenticationReducers = (
-    state = initialAuthenticationState,
-    action: AuthenticationActions
-): IAuthenticationState => {
-    switch (action.type) {
-        case EAuthenticationActions.GetAuthenticationSuccess: {
-            return {
-                ...state,
-                token: action.payload.token,
-                isLoggedIn: true
-            };
-        }
-        default: {
-            return state;
-        }
-    }
+const authenticationReducerInternal = createReducer(
+    initialAuthenticationState,
+    on(
+        AuthenticationActions.getAuthenticationSuccess, (state, { payload }) => ({
+            ...state,
+            authentication: payload
+        })
+    )
+);
+
+export function authenticationReducer(
+    state: IAuthenticationState | undefined,
+    action: Action
+) {
+    return authenticationReducerInternal(state, action);
 }

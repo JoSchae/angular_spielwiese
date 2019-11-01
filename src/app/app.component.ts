@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { IAppState } from './_store/state/app.state';
-import { GetAuthentication } from './_store/actions/authentication.actions';
 import { selectSelectedAuthentication } from './_store/selectors/authentication.selectors';
 import { CookieService } from 'ngx-cookie-service';
+import * as authenticationActions from './_store/actions/authentication.actions';
 
 
 @Component({
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
                 'Lax' // sameSite
             );
         }
-        this._store.dispatch(new GetAuthentication());
+        this._store.dispatch(authenticationActions.getAuthentication());
     }
 
 }

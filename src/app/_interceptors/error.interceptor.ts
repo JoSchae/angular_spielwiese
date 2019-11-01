@@ -3,8 +3,8 @@ import { IAppState } from '../_store/state/app.state';
 import { Store } from '@ngrx/store';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AddError } from '../_store/actions/error.actions';
 import { Injectable } from '@angular/core';
+import * as errorActions from '../_store/actions/error.actions';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -14,7 +14,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, handler: HttpHandler): Observable<HttpEvent<any>> {
         return handler.handle(request).pipe(
             catchError((error: HttpErrorResponse) => {
-                this._store.dispatch(new AddError(error));
+                this._store.dispatch(errorActions.addError(error.error));
                 return throwError(error);
             })
         );

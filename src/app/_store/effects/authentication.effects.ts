@@ -1,13 +1,12 @@
-import { Effect, Actions, ofType } from "@ngrx/effects";
+import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../state/app.state';
-import { GetAuthentication, EAuthenticationActions, GetAuthenticationSuccess } from '../actions/authentication.actions';
 import { CookieService } from 'ngx-cookie-service';
-import { tap, switchMap } from 'rxjs/operators';
-import { of, Observable } from 'rxjs';
-import { IAuthenticationHttp } from 'src/app/_models/http/authentication-http.interface';
+import * as authenticationActions from '../actions/authentication.actions';
+import { catchError, switchMap, map, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable()
 export class AuthenticationEffects {
@@ -19,18 +18,18 @@ export class AuthenticationEffects {
         private _cookieService: CookieService
     ) { }
 
-    @Effect()
-    getAuthentication$ = this._actions$.pipe(
-        ofType<GetAuthentication>(EAuthenticationActions.GetAuthentication),
-        switchMap<GetAuthentication, Observable<IAuthenticationHttp>>(_ => this._authenticationService.getToken().pipe(
+    getAuthentication$ = createEffect(() => this._actions$.pipe(
+        ofType(authenticationActions.getAuthentication),
+        switchMap(action => this._authenticationService.getToken().pipe(
             tap(authenticationHttp => {
                 if (authenticationHttp.authentication.token) {
                     this._cookieService.set('my-token-cookie', authenticationHttp.authentication.token);
                 }
-            })
-        )),
-        switchMap(authenticationHttp => of(new GetAuthenticationSuccess(authenticationHttp.authentication))
-        )
+            }),
+            map(authenticationHttp => authenticationActions.getAuthenticationSuccess({ payload: authenticationHttp.authentication })),
+            catchError(err => of(err))
+            )
+        ))
     );
 }
 
