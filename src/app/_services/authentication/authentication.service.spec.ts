@@ -36,7 +36,6 @@ describe('AuthenticationService', () => {
     it('should get a token', () => {
         service.getToken().subscribe(
             response => {
-                console.log(response);
                 expect(response.authentication).toEqual(validResponse);
             }
         );
