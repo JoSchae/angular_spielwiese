@@ -5,7 +5,7 @@ import { IAppState } from '../state/app.state';
 const selectAuthentication = (state: IAppState) => state.authentication;
 
 
-export const selectSelectedAuthentication = createSelector(
+export const selectSetAuthentication = createSelector(
     selectAuthentication,
     (state: IAuthenticationState) => ({token: state.token, isLoggedIn: state.isLoggedIn})
 );

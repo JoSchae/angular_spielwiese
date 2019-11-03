@@ -45,6 +45,14 @@ add crossorigin="use-credentials" to manifest in index.html
 
 npm install @ngrx/core @ngrx/store @ngrx/effects @ngrx/store-devtools @ngrx/router-store --save
 
+generate ngrx files
+
+ * ng generate @ngrx/schematics:action ActionName --creators
+ * ng generate @ngrx/schematics:reducer ReducerName --creators
+ * ng generate @ngrx/schematics:effect EffectName --creators
+ * ng generate @ngrx/schematics:entity EntityName --creators
+ * ng generate @ngrx/schematics:feature FeatureName --creators
+
 
 ## TSLint and what we do
 

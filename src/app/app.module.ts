@@ -9,7 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { appReducers } from './_store/reducers/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './_store/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { metaReducers } from './_store/reducers/meta.reducer';
 import { CookieService } from 'ngx-cookie-service';
@@ -24,9 +24,19 @@ import { interceptors } from './_interceptors';
     imports: [
         BrowserModule,
         HttpClientModule,
-        StoreModule.forRoot(appReducers, { metaReducers }),
+        StoreModule.forRoot(
+            appReducers, {
+            metaReducers,
+            runtimeChecks: {
+                strictStateImmutability: true,
+                strictActionImmutability: true,
+                strictStateSerializability: true,
+                strictActionSerializability: true
+            }
+        }
+        ),
         EffectsModule.forRoot(effects),
-        StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
+        StoreRouterConnectingModule.forRoot({ routerState: RouterState.Minimal, stateKey: 'router' }),
         !environment.production ? StoreDevtoolsModule.instrument() : [],
         AppRoutingModule,
         // Service Worker
