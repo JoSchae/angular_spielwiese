@@ -8,6 +8,7 @@ export const environment = {
     apiUrl: 'http://localhost:4200/assets/test_data',
 
     authenticationEndpoint: 'authentication.json',
+    usersEndpoint: 'users.json'
 
 };
 

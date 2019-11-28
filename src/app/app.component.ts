@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { IAppState } from './_store/state/app.state';
-import { selectSetAuthentication } from './_store/selectors/authentication.selectors';
+import { selectAuthentication, selectIsLoggedIn } from './_store/selectors/authentication.selectors';
 import { CookieService } from 'ngx-cookie-service';
 import * as authenticationActions from './_store/actions/authentication.actions';
 
@@ -15,7 +15,8 @@ export class AppComponent implements OnInit {
 
     private _myCookie = this._cookieService.getAll();
 
-    authorization$ = this._store.pipe(select(selectSetAuthentication));
+    // authentication$ = this._store.pipe(select(selectAuthentication));
+    isLoggedIn$ = this._store.pipe(select(selectIsLoggedIn));
 
     constructor(
         private _store: Store<IAppState>,

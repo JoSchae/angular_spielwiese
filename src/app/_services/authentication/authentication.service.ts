@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { IAuthenticationHttp } from 'src/app/_models/http/authentication-http.interface';
 import { Subject, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { IAuthentication } from 'src/app/_models/authentication.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -20,9 +21,9 @@ export class AuthenticationService {
         this.isLoggedIn  = this._isLoggedIn$.asObservable();
     }
 
-    getToken() {
-        return this._http.get<IAuthenticationHttp>(this._authUrl).pipe(
-            map<any, IAuthenticationHttp>(authentication => ({ authentication }))
+    getToken(): Observable<IAuthentication> {
+        return this._http.get<IAuthenticationHttp>(this._authUrl + '').pipe(
+            map(response => response.authentication)
         );
     }
 

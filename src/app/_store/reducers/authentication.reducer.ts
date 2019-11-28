@@ -5,9 +5,15 @@ import { createReducer, on, Action } from '@ngrx/store';
 const authenticationReducerInternal = createReducer(
     initialAuthenticationState,
     on(
-        AuthenticationActions.getAuthenticationSuccess, (state, { payload }) => ({
+        AuthenticationActions.getAuthenticationSuccess, (state, { payload: authentication }) => ({
             ...state,
-            authentication: payload
+            authentication
+        })
+    ),
+    on(
+        AuthenticationActions.getAuthenticationFailure, (state, action) => ({
+            ...state,
+            error: action.payload
         })
     )
 );

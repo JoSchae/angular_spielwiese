@@ -1,11 +1,15 @@
 import { IAuthentication } from 'src/app/_models/authentication.interface';
+import { IError } from 'src/app/_models/error.interface';
 
 export interface IAuthenticationState {
-    token: string;
-    isLoggedIn: boolean;
+    authentication: IAuthentication;
+    error: IError;
 }
 
 export const initialAuthenticationState: IAuthenticationState = {
-    token: null,
-    isLoggedIn: false
+    authentication: {
+        token: undefined,
+        isLoggedIn: false
+    },
+    error: null
 };

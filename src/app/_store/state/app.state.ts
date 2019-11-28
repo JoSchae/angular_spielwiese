@@ -7,7 +7,7 @@ export interface IAppState {
 }
 
 export const initialAppState: IAppState = {
-    authentication: initialAuthenticationState
+    authentication: initialAuthenticationState,
 };
 
 export function getInitialState(): IAppState {

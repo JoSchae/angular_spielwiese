@@ -4,19 +4,18 @@ import { Store } from '@ngrx/store';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import * as errorActions from '../_store/actions/error.actions';
 
-@Injectable()
-export class ErrorInterceptor implements HttpInterceptor {
+// @Injectable()
+// export class ErrorInterceptor implements HttpInterceptor {
 
-    constructor(private _store: Store<IAppState>) { }
+//     constructor(private _store: Store<IAppState>) { }
 
-    intercept(request: HttpRequest<any>, handler: HttpHandler): Observable<HttpEvent<any>> {
-        return handler.handle(request).pipe(
-            catchError((error: HttpErrorResponse) => {
-                this._store.dispatch(errorActions.addError(error.error));
-                return throwError(error);
-            })
-        );
-    }
-}
+//     intercept(request: HttpRequest<any>, handler: HttpHandler): Observable<HttpEvent<any>> {
+//         return handler.handle(request).pipe(
+//             catchError((error: HttpErrorResponse) => {
+//                 this._store.dispatch(errorActions.addError(error.error));
+//                 return throwError(error);
+//             })
+//         );
+//     }
+// }

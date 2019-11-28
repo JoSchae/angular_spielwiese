@@ -1,3 +1,6 @@
 {
-    "token": "some_token"
+    "authentication": {
+        "token": "some_token",
+        "isLoggedIn": true
+    }
 }

@@ -13,13 +13,13 @@ import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { metaReducers } from './_store/reducers/meta.reducer';
 import { CookieService } from 'ngx-cookie-service';
-import { TestComponent } from './test-component/test.component';
-import { interceptors } from './_interceptors';
+// import { interceptors } from './_interceptors';
+import { UsersModule } from './users/users.module';
 
 @NgModule({
     declarations: [
         AppComponent,
-        TestComponent,
+        // TestComponent,
     ],
     imports: [
         BrowserModule,
@@ -41,10 +41,13 @@ import { interceptors } from './_interceptors';
         AppRoutingModule,
         // Service Worker
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+        // Feature Modules
+        UsersModule,
+
     ],
     providers: [
         CookieService,
-        interceptors
+        // interceptors
     ],
     bootstrap: [AppComponent]
 })

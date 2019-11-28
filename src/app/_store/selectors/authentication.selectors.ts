@@ -1,11 +1,24 @@
 import { IAuthenticationState } from '../state/authentication.state';
-import { createSelector } from '@ngrx/store';
-import { IAppState } from '../state/app.state';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
 
-const selectAuthentication = (state: IAppState) => state.authentication;
+const selectAuthenticationState = createFeatureSelector<IAuthenticationState>('authentication');
 
+export const selectAuthentication = createSelector(
+    selectAuthenticationState,
+    authentication => authentication.authentication
+);
 
-export const selectSetAuthentication = createSelector(
-    selectAuthentication,
-    (state: IAuthenticationState) => ({token: state.token, isLoggedIn: state.isLoggedIn})
+export const selectToken = createSelector(
+    selectAuthenticationState,
+    authentication => authentication.authentication.token
+);
+
+export const selectIsLoggedIn = createSelector(
+    selectAuthenticationState,
+    authentication => authentication.authentication.isLoggedIn
+);
+
+export const selectError = createSelector(
+    selectAuthenticationState,
+    authentication => authentication.error
 );

@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import * as authenticationActions from '../actions/authentication.actions';
 import { catchError, switchMap, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { mapError } from 'src/app/_core-functions/core-functions';
 
 @Injectable()
 export class AuthenticationEffects {
@@ -21,15 +22,18 @@ export class AuthenticationEffects {
     getAuthentication$ = createEffect(() => this._actions$.pipe(
         ofType(authenticationActions.getAuthentication),
         switchMap(action => this._authenticationService.getToken().pipe(
-            tap(authenticationHttp => {
-                if (authenticationHttp.authentication.token) {
-                    this._cookieService.set('my-token-cookie', authenticationHttp.authentication.token);
+            tap(authentication => {
+                if (authentication.token) {
+                    this._cookieService.set('my-token-cookie', authentication.token);
                 }
             }),
-            map(authenticationHttp => authenticationActions.getAuthenticationSuccess({ payload: authenticationHttp.authentication })),
-            catchError(err => of(err))
-            )
-        ))
+            map(authentication => authenticationActions.getAuthenticationSuccess({ payload: authentication })),
+            catchError((err: Error) => of(err).pipe(
+                map(unmappedError => mapError(unmappedError)),
+                map(mappedError => authenticationActions.getAuthenticationFailure({ payload: mappedError }))
+            ))
+
+        )))
     );
 }
 

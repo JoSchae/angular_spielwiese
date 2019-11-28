@@ -1,6 +1,6 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ErrorInterceptor } from './error.interceptor';
+// import { ErrorInterceptor } from './error.interceptor';
 
-export const interceptors = [
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
-]
+// export const interceptors = [
+//     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+// ]
