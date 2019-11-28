@@ -13,29 +13,29 @@ import * as authenticationActions from './_store/actions/authentication.actions'
 })
 export class AppComponent implements OnInit {
 
-    private _myCookie = this._cookieService.getAll();
+    // private _myCookie = this._cookieService.getAll();
 
-    // authentication$ = this._store.pipe(select(selectAuthentication));
-    isLoggedIn$ = this._store.pipe(select(selectIsLoggedIn));
+    // // authentication$ = this._store.pipe(select(selectAuthentication));
+    // isLoggedIn$ = this._store.pipe(select(selectIsLoggedIn));
 
     constructor(
-        private _store: Store<IAppState>,
-        private _cookieService: CookieService
+        // private _store: Store<IAppState>,
+        // private _cookieService: CookieService
     ) { }
 
     ngOnInit() {
-        if (!this._myCookie) {
-            this._cookieService.set(
-                'my-token-cookie', // name
-                '', // value
-                null, // expireDate (null = session)
-                '/', // path
-                'localhost', // domain
-                false, // secure
-                'Lax' // sameSite
-            );
-        }
-        this._store.dispatch(authenticationActions.getAuthentication());
+        // if (!this._myCookie) {
+        //     this._cookieService.set(
+        //         'my-token-cookie', // name
+        //         '', // value
+        //         null, // expireDate (null = session)
+        //         '/', // path
+        //         'localhost', // domain
+        //         false, // secure
+        //         'Lax' // sameSite
+        //     );
+        // }
+        // this._store.dispatch(authenticationActions.getAuthentication());
     }
 
 }
