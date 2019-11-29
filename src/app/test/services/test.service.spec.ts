@@ -9,7 +9,7 @@ describe('TestService', () => {
     let service: TestService;
     let http: HttpTestingController;
 
-    const expectedData = [
+    const validResponse = [
         {
             vorname: 'johannes',
             nachname: 'schäfer',
@@ -24,6 +24,21 @@ describe('TestService', () => {
         }
     ];
 
+    const expectedData = [
+        {
+            vorname: 'johannes',
+            nachname: 'schäfer',
+            alter: '29',
+            hobbies: ['zocken', 'coden', 'lesen', 'kochen', 'flachwitze']
+        },
+        {
+            vorname: 'jan',
+            nachname: 'kohlhaas',
+            alter: '32',
+            hobbies: ['musik', 'biken', 'schwimmen', 'zocken']
+        }
+    ];
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
@@ -31,12 +46,14 @@ describe('TestService', () => {
                 HttpClientTestingModule
             ],
             providers: [
-                TestService
+                TestService,
             ]
         });
 
         service = TestBed.get(TestService);
         http = TestBed.get(HttpTestingController);
+        // no console.errors while testing
+        jest.spyOn(console, 'error').mockImplementation(() => undefined);
     });
 
     afterEach(inject([HttpTestingController], (_http: HttpTestingController) => {
@@ -58,9 +75,25 @@ describe('TestService', () => {
         http.expectOne((req: HttpRequest<any>) => {
             return req.url === `${environment.apiUrl}/${environment.testDataEndpoint}` && req.method === 'GET';
         }, `GET all test data from ${environment.apiUrl}/${environment.testDataEndpoint}`)
-            .flush(expectedData);
+            .flush({data: validResponse});
 
         expect(actualData).toEqual(expectedData);
+    });
+
+    it('should generate an ERROR from backend', () => {
+        let actualData = {};
+
+        service.getTestData().subscribe(
+            response => actualData = response,
+            error => console.error(error)
+        );
+
+        http.expectOne((req: HttpRequest<any>) => {
+            return req.url === `${environment.apiUrl}/${environment.testDataEndpoint}` && req.method === 'GET';
+        }, `GET all test data from ${environment.apiUrl}/${environment.testDataEndpoint}`)
+            .error(new ErrorEvent('ERROR_GET_TEST_DATA'));
+
+        expect(console.error).toHaveBeenCalled();
     });
 
 

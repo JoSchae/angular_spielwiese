@@ -1,7 +1,7 @@
 import { IUserHttp } from '../_models/http/user-http.interface';
 import { IUser } from '../_models/user.interface';
 import { IError } from '../_models/error.interface';
-import { TestData } from '../test/services/test.service';
+import { ITestData, ITestDataHttp } from '../test/services/test.service';
 
 export function mapUsers(response: IUserHttp): IUser[] {
     const mappedUsers = response.users.map<IUser>(user => {
@@ -24,18 +24,13 @@ export function mapError(error: Error): IError {
     return mappedError;
 }
 
-export function mapTestData(response: { data: TestData[] }): TestData[] | {} {
-    const mappedData = {};
-    console.error(response)
-    if (mappedData['data']) {
-        return response.data.map<any>(data => {
-            return {
-                vorname: data.vorname,
-                nachname: data.nachname,
-                alter: data.alter,
-                hobbies: data.hobbies
-            };
-        });
-    }
-    return mappedData;
+export function mapTestData(response: ITestDataHttp): ITestData[] {
+    return response.data.map<ITestData>(data => {
+        return {
+            vorname: data.vorname,
+            nachname: data.nachname,
+            alter: data.alter,
+            hobbies: data.hobbies.split(',')
+        };
+    });
 }

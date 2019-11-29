@@ -3,13 +3,22 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { mapTestData } from 'src/app/_core-functions/core-functions';
+import * as coreFunctions from '../../_core-functions/core-functions';
 
-export interface TestData {
+export interface ITestData {
     vorname: string;
     nachname: string;
     alter: number;
-    hobbies: string;
+    hobbies: string[];
+}
+
+export interface ITestDataHttp {
+    data: {
+        vorname: string;
+        nachname: string;
+        alter: number;
+        hobbies: string;
+    }[];
 }
 
 @Injectable({
@@ -20,21 +29,9 @@ export class TestService {
     constructor(private _http: HttpClient) { }
 
     public getTestData(): Observable<any[]> {
-        return this._http.get<any[]>(`${environment.apiUrl}/${environment.testDataEndpoint}`).pipe(
-            map(response => {
-                if (response['data']) {
-                    return response['data'].map<any>(data => {
-
-                        return {
-                            vorname: data.vorname,
-                            nachname: data.nachname,
-                            alter: data.alter,
-                            hobbies: data.hobbies
-                        }
-                    });
-                }
-                return response;
-            })
+        return this._http.get<ITestDataHttp>(`${environment.apiUrl}/${environment.testDataEndpoint}`).pipe(
+            map(response => coreFunctions.mapTestData(response))
         );
     }
+
 }
