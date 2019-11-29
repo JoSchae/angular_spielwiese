@@ -28,7 +28,7 @@ export class TestService {
 
     constructor(private _http: HttpClient) { }
 
-    public getTestData(): Observable<any[]> {
+    public getTestData(): Observable<ITestData[]> {
         return this._http.get<ITestDataHttp>(`${environment.apiUrl}/${environment.testDataEndpoint}`).pipe(
             map(response => coreFunctions.mapTestData(response))
         );

@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { testDataReducers } from './stores/ngrx/reducer/testdata.reducer';
+import { TestDataEffects } from './stores/ngrx/effects/testdata.effects';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { testDataReducers } from './stores/ngrx/reducer/testdata.reducer';
     CommonModule,
     TestRoutingModule,
     StoreModule.forFeature('data', testDataReducers),
-    EffectsModule.forFeature([]),
+    EffectsModule.forFeature([TestDataEffects]),
     HttpClientModule,
   ]
 })
