@@ -7,8 +7,8 @@ export interface ITestDataState {
     data: ITestData[];
 }
 
-export const initialTestDataState = {
-    data: undefined
+export const initialTestDataState: ITestDataState = {
+    data: []
 };
 
 // SELECTORS
