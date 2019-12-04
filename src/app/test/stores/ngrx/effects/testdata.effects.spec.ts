@@ -54,9 +54,9 @@ describe('test data effects', () => {
         const action = getAllTestData();
         const outcome = getAllTestDataSuccess( { data } );
 
-        actions$ = m.hot('-a', { a: action });
-        const response = m.cold('-a|', { a: data });
-        const expected = m.cold('--b', { b: outcome });
+        actions$ = m.hot('          -^-a', { a: action });
+        const response = m.cold('     -a|', { a: data });
+        const expected = m.cold('    ---b', { b: outcome });
         testService.getTestData = jest.fn(() => response);
 
         m.expect(effects.getAllTestData$).toBeObservable(expected);
