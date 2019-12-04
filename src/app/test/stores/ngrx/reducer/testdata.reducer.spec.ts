@@ -1,7 +1,6 @@
 import { testDataReducers } from './testdata.reducer';
 import { initialTestDataState } from '../states/testdata.state';
 import { getAllTestDataSuccess } from '../actions/testdata.actions';
-import { props } from '@ngrx/store';
 
 describe('testdata reducer', () => {
 
