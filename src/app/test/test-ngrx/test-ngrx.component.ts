@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ITestDataState } from '../stores/ngrx/states/testdata.state';
 import { Store, select } from '@ngrx/store';
-import { selectors } from '../stores/ngrx/states/testdata.state';
+import { selectors } from '../stores/ngrx/reducer/testdata.reducer';
 import * as testDataActions from '../stores/ngrx/actions/testdata.actions';
 @Component({
   selector: 'tmp-test-ngrx',

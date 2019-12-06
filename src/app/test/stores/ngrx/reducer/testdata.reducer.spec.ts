@@ -1,7 +1,17 @@
-import { testDataReducers } from './testdata.reducer';
+import { testDataReducers, selectAllTestData, selectSpecificTestData } from './testdata.reducer';
 import { initialTestDataState } from '../states/testdata.state';
 import { getAllTestDataSuccess } from '../actions/testdata.actions';
-import { props } from '@ngrx/store';
+
+const data = {
+    data: [
+        {
+            vorname: 'johannes',
+            nachname: 'schäfer',
+            alter: 29,
+            hobbies: ['zocken', 'coden', 'lesen', 'kochen', 'flachwitze']
+        }
+    ]
+};
 
 describe('testdata reducer', () => {
 
@@ -12,19 +22,21 @@ describe('testdata reducer', () => {
     });
 
     it('should return new state with all testdata', () => {
-        const data = {
-            data: [
-                {
-                    vorname: 'johannes',
-                    nachname: 'schäfer',
-                    alter: 29,
-                    hobbies: ['zocken', 'coden', 'lesen', 'kochen', 'flachwitze']
-                }
-            ]
-        };
+
         const action = getAllTestDataSuccess(data);
         const result = testDataReducers(initialTestDataState, action);
         expect(result).toEqual(data);
     });
 
+});
+
+describe('testdata selectors', () => {
+
+    it('should select all testdata', () => {
+        expect(selectAllTestData.projector(data)).toEqual(data.data);
+    });
+
+    it('should select specific testdata', () => {
+        expect(selectSpecificTestData.projector(0)).toBeTruthy()
+    });
 });
