@@ -1,6 +1,7 @@
 import { testDataReducers, selectAllTestData, selectSpecificTestData } from './testdata.reducer';
 import { initialTestDataState } from '../states/testdata.state';
 import { getAllTestDataSuccess } from '../actions/testdata.actions';
+<<<<<<< HEAD
 
 const data = {
     data: [
@@ -12,6 +13,8 @@ const data = {
         }
     ]
 };
+=======
+>>>>>>> 2effca0b7ffc45cbf450e763093b87f04306a7c5
 
 describe('testdata reducer', () => {
 
