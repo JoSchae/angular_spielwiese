@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import * as coreFunctions from '../../_core-functions/core-functions';
 
 export interface ITestData {
+    id: number;
     vorname: string;
     nachname: string;
     alter: number;
@@ -14,6 +15,7 @@ export interface ITestData {
 
 export interface ITestDataHttp {
     data: {
+        id: number;
         vorname: string;
         nachname: string;
         alter: number;

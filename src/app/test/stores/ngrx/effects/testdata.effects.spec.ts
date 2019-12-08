@@ -15,12 +15,14 @@ describe('test data effects', () => {
 
     const data = [
             {
+                id: 0,
                 vorname: 'johannes',
                 nachname: 'schäfer',
                 alter: 29,
                 hobbies: ['zocken', 'coden', 'lesen', 'kochen', 'flachwitze']
             },
             {
+                id: 1,
                 vorname: 'jan',
                 nachname: 'kohlhaas',
                 alter: 32,

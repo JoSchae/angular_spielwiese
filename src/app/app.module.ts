@@ -15,6 +15,7 @@ import { metaReducers } from './_store/reducers/meta.reducer';
 import { CookieService } from 'ngx-cookie-service';
 // import { interceptors } from './_interceptors';
 import { UsersModule } from './users/users.module';
+import { TestNgrxComponent } from './test/test-ngrx/test-ngrx.component';
 
 @NgModule({
     declarations: [

@@ -1,11 +1,11 @@
 import { ITestData } from 'src/app/test/services/test.service';
 
-// STATE
-
 export interface ITestDataState {
     data: ITestData[];
+    specificData: ITestData;
 }
 
 export const initialTestDataState: ITestDataState = {
-    data: []
+    data: [],
+    specificData: null
 };

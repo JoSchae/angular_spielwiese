@@ -27,6 +27,7 @@ export function mapError(error: Error): IError {
 export function mapTestData(response: ITestDataHttp): ITestData[] {
     return response.data.map<ITestData>(data => {
         return {
+            id: data.id,
             vorname: data.vorname,
             nachname: data.nachname,
             alter: data.alter,
