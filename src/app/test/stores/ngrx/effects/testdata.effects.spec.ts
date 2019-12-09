@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { TestService } from 'src/app/test/services/test.service';
 import { TestDataEffects } from './testdata.effects';
-import { getAllTestData, getAllTestDataSuccess } from '../actions/testdata.actions';
+import { GETAllTestData, GETAllTestDataSuccess } from '../actions/testdata.actions';
 import { marbles } from 'rxjs-marbles/jest';
 
 
@@ -52,15 +52,15 @@ describe('test data effects', () => {
         expect(effects).toBeTruthy();
     });
 
-    it('should return getAllTestDataSuccess with tes-data on success', marbles(m => {
-        const action = getAllTestData();
-        const outcome = getAllTestDataSuccess( { data } );
+    it('should return GETAllTestDataSuccess with tes-data on success', marbles(m => {
+        const action = GETAllTestData();
+        const outcome = GETAllTestDataSuccess( { data } );
 
         actions$ = m.hot('          -^-a', { a: action });
         const response = m.cold('     -a|', { a: data });
         const expected = m.cold('    ---b', { b: outcome });
         testService.getTestData = jest.fn(() => response);
 
-        m.expect(effects.getAllTestData$).toBeObservable(expected);
+        m.expect(effects.GETAllTestData$).toBeObservable(expected);
     }));
 });

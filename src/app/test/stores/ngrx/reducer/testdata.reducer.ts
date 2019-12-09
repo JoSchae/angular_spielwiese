@@ -7,7 +7,7 @@ import { statement } from '@babel/template';
 
 const testDataReducerInternal = createReducer(
     initialTestDataState,
-    on(testDataActions.getAllTestDataSuccess, (state, { data }) => ({
+    on(testDataActions.GETAllTestDataSuccess, (state, { data }) => ({
         ...state,
         data,
     })),

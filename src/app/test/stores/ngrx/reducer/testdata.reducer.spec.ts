@@ -35,7 +35,7 @@ describe('testdata reducer', () => {
             specificData: null
         };
 
-        const action = testDataActions.getAllTestDataSuccess({data});
+        const action = testDataActions.GETAllTestDataSuccess({data});
         const result = testDataReducers(initialTestDataState, action);
         expect(result).toEqual(resultState);
     });

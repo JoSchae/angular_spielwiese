@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ITestDataState } from '../stores/ngrx/states/testdata.state';
-import { Store, select } from '@ngrx/store';
-import { selectors, selectTestDataById } from '../stores/ngrx/reducer/testdata.reducer';
-import * as testDataActions from '../stores/ngrx/actions/testdata.actions';
+import { TestDataFacade } from '../stores/ngrx/facades/testdata.facade.service';
+
 @Component({
     selector: 'tmp-test-ngrx',
     templateUrl: './test-ngrx.component.html',
@@ -10,18 +8,18 @@ import * as testDataActions from '../stores/ngrx/actions/testdata.actions';
 })
 export class TestNgrxComponent implements OnInit {
 
-    testData$ = this._store.pipe(select(selectors.selectAllTestData));
-    specifiData$ = this._store.pipe(select(
-        selectors.selectSpecificTestData
-    ));
-    testDataById = this._store.pipe(select(selectTestDataById, 0));
+    // testData$ = this._testDataFacade.allTestData$;
+    // specifiData$ = this._testDataFacade.specificTestData$;
+    testData$ = this._testDataFacade.selectAllTestData();
+    specifiData$ = this._testDataFacade.selectSpecificTestData();
+    // testDataById = this._testDataFacade.selectTestDataById(0);
 
-    constructor(private _store: Store<ITestDataState>) { }
+    constructor(private _testDataFacade: TestDataFacade) { }
 
     ngOnInit() {
-        this._store.dispatch(testDataActions.getAllTestData());
+        this._testDataFacade.GETAllTestData();
         this.testData$.subscribe(
-            val => this._store.dispatch(testDataActions.setSpecificTestData({specificData: val[0]}))
+            val => this._testDataFacade.setSpecificTestData(val[0])
         );
     }
 

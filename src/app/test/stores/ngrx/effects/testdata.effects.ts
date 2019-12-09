@@ -10,10 +10,10 @@ export class TestDataEffects {
 
     constructor(private _testService: TestService, private _actions$: Actions) { }
 
-    getAllTestData$ = createEffect(() => this._actions$.pipe(
-        ofType(testDataActions.getAllTestData),
+    GETAllTestData$ = createEffect(() => this._actions$.pipe(
+        ofType(testDataActions.GETAllTestData),
         switchMap(() => this._testService.getTestData().pipe(
-            map(testData => testDataActions.getAllTestDataSuccess({ data: testData })),
+            map(testData => testDataActions.GETAllTestDataSuccess({ data: testData })),
             // catchError(err => of(err))
         ))
     ));

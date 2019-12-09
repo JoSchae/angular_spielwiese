@@ -1,9 +1,9 @@
 import { createAction, props } from '@ngrx/store';
 import { ITestData } from 'src/app/test/services/test.service';
 
-export const getAllTestData = createAction('[Test ngrx] Get all TestData');
+export const GETAllTestData = createAction('[Test ngrx] Get all TestData');
 
-export const getAllTestDataSuccess = createAction(
+export const GETAllTestDataSuccess = createAction(
     '[Test ngrx] Get all TestData Success',
     props<{ data: ITestData[] }>()
 );
