@@ -1,7 +1,10 @@
 import { TestNgrxComponent } from './test-ngrx.component';
-import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
+import { createComponentFactory, Spectator, mockProvider } from '@ngneat/spectator/jest';
 import { TestDataFacade } from '../stores/ngrx/facades/testdata.facade';
 import { TestDataFacadeMock } from '../stores/ngrx/facades/testdata-mock.facade';
+import { TestDataFacadeImpl } from '../stores/ngrx/facades/testdata-impl.facade';
+import { GETAllTestData } from '../stores/ngrx/actions/testdata.actions';
+import { of } from 'rxjs';
 
 describe('TestNgrxComponent', () => {
 
@@ -13,7 +16,6 @@ describe('TestNgrxComponent', () => {
                 useClass: TestDataFacadeMock
             }
         ]
-
     });
 
     let spectator: Spectator<TestNgrxComponent>;
