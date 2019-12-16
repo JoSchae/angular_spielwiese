@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TestDataFacade } from '../stores/ngrx/facades/testdata.facade.service';
+import { TestDataFacade } from '../stores/ngrx';
 
 @Component({
     selector: 'tmp-test-ngrx',
@@ -8,11 +8,9 @@ import { TestDataFacade } from '../stores/ngrx/facades/testdata.facade.service';
 })
 export class TestNgrxComponent implements OnInit {
 
-    // testData$ = this._testDataFacade.allTestData$;
-    // specifiData$ = this._testDataFacade.specificTestData$;
     testData$ = this._testDataFacade.selectAllTestData();
-    specifiData$ = this._testDataFacade.selectSpecificTestData();
-    // testDataById = this._testDataFacade.selectTestDataById(0);
+    specificData$ = this._testDataFacade.selectSpecificTestData();
+    testDataById$ = this._testDataFacade.selectTestDataById(0);
 
     constructor(private _testDataFacade: TestDataFacade) { }
 

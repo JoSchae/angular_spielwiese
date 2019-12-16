@@ -9,6 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { testDataReducers } from './stores/ngrx/reducer/testdata.reducer';
 import { TestDataEffects } from './stores/ngrx/effects/testdata.effects';
+import { NrgxStoreModule } from './stores/ngrx/ngrx-store.module';
 
 
 @NgModule({
@@ -19,9 +20,8 @@ import { TestDataEffects } from './stores/ngrx/effects/testdata.effects';
   imports: [
     CommonModule,
     TestRoutingModule,
-    StoreModule.forFeature('data', testDataReducers),
-    EffectsModule.forFeature([TestDataEffects]),
     HttpClientModule,
+    NrgxStoreModule
   ]
 })
 export class TestModule { }

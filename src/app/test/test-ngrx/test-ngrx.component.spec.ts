@@ -1,48 +1,43 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TestNgrxComponent } from './test-ngrx.component';
-import { TestDataFacade } from '../stores/ngrx/facades/testdata.facade.service';
-import { Store } from '@ngrx/store';
-import { TestNgrxStore } from '../stores/ngrx/testing/test.store';
-import { of } from 'rxjs';
-import { provideMockStore } from '@ngrx/store/testing';
-
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
+import { TestDataFacade } from '../stores/ngrx/facades/testdata.facade';
+import { TestDataFacadeMock } from '../stores/ngrx/facades/testdata-mock.facade';
 
 describe('TestNgrxComponent', () => {
+
+    const createComponent = createComponentFactory({
+        component: TestNgrxComponent,
+        componentProviders: [
+            {
+                provide: TestDataFacade,
+                useClass: TestDataFacadeMock
+            }
+        ]
+
+    });
+
+    let spectator: Spectator<TestNgrxComponent>;
     let component: TestNgrxComponent;
-    let fixture: ComponentFixture<TestNgrxComponent>;
-    let facade: TestDataFacade;
-
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [TestNgrxComponent],
-            providers: [
-                TestDataFacade,
-                provideMockStore({ })
-            ]
-            //     StoreModule.forRoot(
-            //         testDataReducers, {
-            //         runtimeChecks: {
-            //             strictStateImmutability: true,
-            //             strictActionImmutability: true,
-            //             strictStateSerializability: true,
-            //             strictActionSerializability: true
-            //         }
-            //     })
-            // ]
-        })
-        .compileComponents();
-
-        facade = TestBed.get(TestDataFacade);
-    }));
+    let service: TestDataFacade;
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(TestNgrxComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+        spectator = createComponent();
+        component = spectator.component;
+        service = spectator.get(TestDataFacade, true);
+        spectator.detectChanges();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should have all 3 selectors defined', () => {
+        expect(component.testData$).toBeDefined();
+        expect(component.specificData$).toBeDefined();
+        expect(component.testDataById$).toBeDefined();
+    });
+
+    it('should match the markup after ngInit', () => {
+        expect(spectator.fixture).toMatchSnapshot();
     });
 });

@@ -5,27 +5,20 @@ import * as fromTestDataActions from '../actions/testdata.actions';
 import { selectors } from '../reducer/testdata.reducer';
 import { ITestData } from 'src/app/test/services/test.service';
 import { Observable } from 'rxjs';
+import { TestDataFacade } from './testdata.facade';
 
 @Injectable()
-export class TestDataFacade {
-
-    // allTestData$ = this._store.pipe(select(selectors.selectAllTestData));
-    // specificTestData$ = this._store.pipe(select(selectors.selectSpecificTestData));
-
-    // public facadeSelectors = [
-    //     this.selectAllTestData,
-    //     this.selectSpecificTestData
-    // ];
+export class TestDataFacadeImpl implements TestDataFacade {
 
     constructor(private _store: Store<ITestDataState>) { }
 
     // DISPATCHERS
 
-    GETAllTestData() {
+    GETAllTestData(): void {
         this._store.dispatch(fromTestDataActions.GETAllTestData());
     }
 
-    setSpecificTestData(specificData: ITestData) {
+    setSpecificTestData(specificData: ITestData): void {
         this._store.dispatch(fromTestDataActions.setSpecificTestData({ specificData }));
     }
 
