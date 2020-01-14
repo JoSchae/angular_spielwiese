@@ -13,6 +13,13 @@
             "nachname": "kohlhaas",
             "alter": "32",
             "hobbies": "musik,biken,schwimmen,zocken"
+        },
+        {
+            "id": 2,
+            "vorname": "conny",
+            "nachname": "hering",
+            "alter": "69",
+            "hobbies": "yokyok,marco ärgern,ein schnelles"
         }
     ]
 }
