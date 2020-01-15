@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 // import { interceptors } from './_interceptors';
 import { TestModule } from './test/test.module';
+import { FacadesModule } from './_facades/facades.module';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,8 @@ import { TestModule } from './test/test.module';
         BrowserModule,
         FormsModule,
         HttpClientModule,
+        // Facades
+        FacadesModule,
         // Service Worker
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
         // Feature Modules

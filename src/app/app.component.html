@@ -1,9 +1,7 @@
-<!--
-<div *ngIf="(isLoggedIn$ | async); else authenticationError" class="">
-
-</div>
-
-<ng-template #authenticationError>Es ist ein Fehler aufgetreten</ng-template>
-
- -->
+<ng-container *ngIf="(authentication | async).isLoggedIn; else notLoggedIn">
+    <p>Is logged in!</p>
+</ng-container>
+<ng-template #notLoggedIn>
+    <p>Is NOT logged in!</p>
+</ng-template>
  <router-outlet></router-outlet>

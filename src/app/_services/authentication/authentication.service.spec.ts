@@ -1,58 +1,31 @@
-// import { TestBed, getTestBed } from '@angular/core/testing';
-// import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
-// import { AuthenticationService } from './authentication.service';
-// import { environment } from 'src/environments/environment';
-// import { IAuthentication } from 'src/app/_models/authentication.interface';
-// import { HttpErrorResponse } from '@angular/common/http';
+import { AuthenticationService } from './authentication.service';
+import { createHttpFactory, SpectatorHttp, HttpMethod } from '@ngneat/spectator/jest';
+import { AuthenticationStore } from 'src/app/_store/authentication/auth.store.service';
+import { marbles } from 'rxjs-marbles/jest';
+import { environment } from '../../../environments/environment';
+import { SpyObject } from '@ngneat/spectator';
 
-// describe('AuthenticationService', () => {
+describe('AuthenticationService', () => {
 
-//     let injector: TestBed;
-//     let service: AuthenticationService;
-//     let httpMock: HttpTestingController;
+    let spectator: SpectatorHttp<AuthenticationService>;
+    let store: SpyObject<AuthenticationStore>
+    const createService = createHttpFactory({
+        service: AuthenticationService,
+        mocks: [AuthenticationStore]
+    });
 
-//     const testToken = 'some_test_token';
-//     const validResponse = ({token: testToken, isLoggedIn: undefined}) as IAuthentication;
-//     const errorResponse = new ErrorEvent('test');
+    beforeEach(() => spectator = createService());
 
-//     beforeEach(() => {
-//         TestBed.configureTestingModule({
-//             imports: [HttpClientTestingModule],
-//             providers: [AuthenticationService]
-//         });
-//         injector = getTestBed();
-//         service = injector.get(AuthenticationService);
-//         httpMock = injector.get(HttpTestingController);
-//     });
+    it('should create', () => {
+        expect(spectator.service).toBeTruthy();
+    });
 
-//     afterEach(() => {
-//         httpMock.verify();
-//     });
+    it('should return a token', marbles(m => {
+        spectator.service.login();
+        spectator.expectOne(
+            `${environment.apiUrl}/${environment.authenticationEndpoint}`,
+            HttpMethod.GET
+        );
+    }));
 
-//     it('should be created', () => {
-//         expect(service).toBeTruthy();
-//     });
-
-//     it('should get a token', () => {
-//         service.getToken().subscribe(
-//             response => {
-//                 expect(response).toEqual(validResponse);
-//             }
-//         );
-//         const authenticationRequest = httpMock.expectOne(
-//             `${environment.apiUrl}/${environment.authenticationEndpoint}`
-//         );
-//         authenticationRequest.flush(validResponse);
-//     });
-
-//     it('should get error out', () => {
-//         service.getToken().subscribe(
-//             next => {},
-//             err => expect(err.error).toEqual(errorResponse)
-//         );
-//         const authenticationRequest = httpMock.expectOne(
-//             `${environment.apiUrl}/${environment.authenticationEndpoint}`
-//         );
-//         authenticationRequest.error(errorResponse);
-//     });
-// });
+});

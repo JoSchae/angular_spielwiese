@@ -1,19 +1,5 @@
-import { IUserHttp } from '../_models/http/user-http.interface';
-import { IUser } from '../_models/user.interface';
 import { IError } from '../_models/error.interface';
 import { ITestData, ITestDataHttp } from '../test/services/test.service';
-
-export function mapUsers(response: IUserHttp): IUser[] {
-    const mappedUsers = response.users.map<IUser>(user => {
-        return {
-            vorname: user.vorname,
-            nachname: user.nachname,
-            alter: user.alter,
-            hobbies: user.hobbies.split(',')
-        };
-    });
-    return mappedUsers;
-}
 
 export function mapError(error: Error): IError {
     const mappedError = {
@@ -34,4 +20,8 @@ export function mapTestData(response: ITestDataHttp): ITestData[] {
             hobbies: data.hobbies.split(',')
         };
     });
+}
+
+export function isCorrectToken(token: string) {
+    return token.match(/([^& %]){10}\.([^& %]{32})\.([^& %]{10})\w/g);
 }

@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { UsersContainerComponent } from './components/container/users/users-container.component';
 
 const routes: Routes = [
     {
         path: 'test',
         children: [
-            { path: '', component: },
+            { path: '', redirectTo: 'users', pathMatch: 'full'},
+            { path: 'users', component: UsersContainerComponent}
         ]
     }
 ];
