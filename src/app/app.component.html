@@ -1,7 +1,2 @@
-<ng-container *ngIf="(authentication | async).isLoggedIn; else notLoggedIn">
-    <p>Is logged in!</p>
-</ng-container>
-<ng-template #notLoggedIn>
-    <p>Is NOT logged in!</p>
-</ng-template>
+<tmp-child-component></tmp-child-component>
  <router-outlet></router-outlet>

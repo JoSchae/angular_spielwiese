@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthenticationStore, IAuthenticationState } from './_store/authentication/auth.store.service';
 import { IAuthentication } from './_models/authentication.interface';
 import { Observable, interval } from 'rxjs';
@@ -18,16 +18,14 @@ export class AppComponent implements OnInit {
         private _authFacade: AuthenticationFacade
     ) { }
 
-    ngOnInit() {
-        interval(5000).subscribe(
-            val => {
-                if (val % 2 !== 0) {
-                    this._authFacade.logout();
-                } else {
-                    this._authFacade.login();
-                }
-            }
-        );
+    ngOnInit() { }
+
+    login() {
+        this._authFacade.login();
+    }
+
+    logout() {
+        this._authFacade.logout();
     }
 
 }
