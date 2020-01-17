@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppComponent should match initial snapshot 1`] = `
+<tmp-root
+  _authFacade={[Function AuthenticationFacade]}
+  authentication={[Function AnonymousSubject]}
+>
+  <div>
+    <button
+      class="loginBtn"
+    >
+      Login
+    </button>
+    <br />
+    <button
+      class="logoutBtn"
+    >
+      Logout
+    </button>
+  </div><p>
+    Is NOT logged in!
+  </p><router-outlet />
+</tmp-root>
+`;
+
+exports[`AppComponent should match snapshot after ngOnInit 1`] = `
+<div
+  id="root2"
+>
+  <div>
+    <button
+      class="loginBtn"
+    >
+      Login
+    </button>
+    <br />
+    <button
+      class="logoutBtn"
+    >
+      Logout
+    </button>
+  </div>
+  
+  <p>
+    Is NOT logged in!
+  </p>
+  
+  <router-outlet />
+</div>
+`;

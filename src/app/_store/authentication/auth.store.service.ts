@@ -1,7 +1,6 @@
 import { Injectable, OnDestroy } from "@angular/core";
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { AuthenticationFacade } from 'src/app/_facades/authentication.facade';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, shareReplay } from 'rxjs/operators';
 
 export interface IAuthenticationState {
     token: string;
@@ -35,7 +34,7 @@ export class AuthenticationStore implements OnDestroy {
                 console.debug('[AUTH] Completed');
             }
         );
-        this.authentiationState$ = this._authenticationState.asObservable();
+        this.authentiationState$ = this._authenticationState.pipe(shareReplay(1));
     }
 
     ngOnDestroy(): void {
