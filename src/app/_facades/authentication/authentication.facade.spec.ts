@@ -1,8 +1,8 @@
 import { AuthenticationFacade } from './authentication.facade';
 import { SpyObject } from '@ngneat/spectator';
 import { SpectatorHttp, createHttpFactory } from '@ngneat/spectator/jest';
-import { AuthenticationStore } from 'src/app/_stores/authentication/auth.store.service';
-import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
+import { AuthenticationStore } from '../../_stores/authentication/auth.store.service';
+import { AuthenticationService } from '../../_services/authentication/authentication.service';
 
 
 describe('Authentication Facade', () => {
@@ -25,10 +25,6 @@ describe('Authentication Facade', () => {
     let store: SpyObject<AuthenticationStore>;
     const createService = createHttpFactory({
         service: AuthenticationFacade,
-        // providers: [
-        //     AuthenticationStore,
-        //     AuthenticationService
-        // ],
         mocks: [
             AuthenticationStore,
             AuthenticationService

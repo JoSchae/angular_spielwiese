@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { AuthenticationStore } from '../../_stores/authentication/auth.store.service';
 import { AuthenticationService } from '../../_services/authentication/authentication.service';
 
-
-
 @Injectable({
     providedIn: 'root'
 })
