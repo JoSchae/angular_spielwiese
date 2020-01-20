@@ -1,13 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LoginComponent } from './login.component';
 import { Spectator, createComponentFactory } from '@ngneat/spectator/jest';
 import { AuthenticationStore } from 'src/app/_stores/authentication/auth.store.service';
-import { LoginViewComponent } from './login-view/login-view.component';
 import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
+import { LoginViewComponent } from './_view/login-view.component';
 import { AuthenticationFacade } from 'src/app/_facades/authentication/authentication.facade';
 import { of } from 'rxjs';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('LoginComponent', () => {
 

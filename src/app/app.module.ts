@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { TestViewModule } from './test-view/test-view.module';
 import { FacadesModule } from './_facades/facades.module';
-import { ChildComponentComponent } from './AppComponent/child-component/child-component.component';
 
 @NgModule({
   declarations: [
