@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginViewComponent is logged out 1`] = `
+<tmp-login-view
+  buttonEmitter={[Function EventEmitter]}
+  isLoggedIn="false"
+>
+  <div>
+    <button>
+      Login
+    </button>
+  </div><div>
+    <button>
+      Logout
+    </button>
+  </div><div>
+    
+    <br />
+    
+    <span>
+      User is NOT logged in
+    </span>
+  </div>
+</tmp-login-view>
+`;
+
+exports[`LoginViewComponent is loggedn in 1`] = `
+<tmp-login-view
+  buttonEmitter={[Function EventEmitter]}
+  isLoggedIn={[Function Boolean]}
+>
+  <div>
+    <button>
+      Login
+    </button>
+  </div><div>
+    <button>
+      Logout
+    </button>
+  </div><div>
+    
+    <span>
+      User is logged in
+    </span>
+    <br />
+    
+  </div>
+</tmp-login-view>
+`;

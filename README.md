@@ -1,6 +1,6 @@
-# TemplateApp
+# Template
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.5.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
 
 ## Development server
 
@@ -25,36 +25,3 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-
-## What to install
-
-npm install @angular/cli
-
-npm install @angular/cli -g
-
-npm install bulma --save
-
- -> add bulma.min.css to angular.json styles configuration
-
- --> to customize bulma styles, import them at the top of the styles.scss
-
-npm add @angular/pwa
-
-add crossorigin="use-credentials" to manifest in index.html
-
-npm install @ngrx/core @ngrx/store @ngrx/effects @ngrx/store-devtools @ngrx/router-store --save
-
-generate ngrx files
-
- * ng generate @ngrx/schematics:action ActionName --creators
- * ng generate @ngrx/schematics:reducer ReducerName --creators
- * ng generate @ngrx/schematics:effect EffectName --creators
- * ng generate @ngrx/schematics:entity EntityName --creators
- * ng generate @ngrx/schematics:feature FeatureName --creators
-
-
-## TSLint and what we do
-
- * use of for-in loops instead of for-of loops:
-   * https://stackoverflow.com/questions/40770425/tslint-codelyzer-ng-lint-error-for-in-statements-must-be-filtere

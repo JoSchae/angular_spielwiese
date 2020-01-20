@@ -1,6 +1,6 @@
 {
-  "name": "template-app",
-  "short_name": "template-app",
+  "name": "template",
+  "short_name": "template",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TestViewRootComponent should have correct initial snapshot 1`] = `
+<tmp-test-view-root>
+  <router-outlet />
+</tmp-test-view-root>
+`;

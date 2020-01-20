@@ -3,7 +3,7 @@ import { createHttpFactory, SpectatorHttp, HttpMethod, createSpyObject } from '@
 import { marbles } from 'rxjs-marbles/jest';
 import { environment } from '../../../environments/environment';
 import { SpyObject } from '@ngneat/spectator';
-import { AuthenticationStore } from 'src/app/_store/authentication/auth.store.service';
+import { AuthenticationStore } from 'src/app/_stores/authentication/auth.store.service';
 
 describe('Authentication Service', () => {
 

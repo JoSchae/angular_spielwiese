@@ -86,9 +86,9 @@
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
     "variable-name": [
-        true,
-        "check-format",
-        "allow-leading-underscore"
+      true,
+      "check-format",
+      "allow-leading-underscore"
     ]
   },
   "rulesDirectory": [

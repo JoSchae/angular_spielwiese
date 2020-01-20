@@ -3,13 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    production: false,
+  production: false,
 
-    apiUrl: 'http://localhost:4200/assets/test_data',
+  apiUrl: 'http://localhost:4200/assets/test_data',
 
-    authenticationEndpoint: 'authentication.json',
-    usersEndpoint: 'users.json',
-    testDataEndpoint: 'testData.json'
+  authenticationEndpoint: 'authentication.json',
+  usersEndpoint: 'users.json',
+  testDataEndpoint: 'testData.json'
 
 };
 

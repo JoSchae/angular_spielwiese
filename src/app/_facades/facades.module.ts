@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AuthenticationStore } from '../_store/authentication/auth.store.service';
+import { AuthenticationStore } from '../_stores/authentication/auth.store.service';
 import { AuthenticationService } from '../_services/authentication/authentication.service';
 
 @NgModule({

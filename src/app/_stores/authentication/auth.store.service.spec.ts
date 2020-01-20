@@ -23,14 +23,14 @@ describe('Authentication Store', () => {
     );
 
     it('should have an initial State', marbles(m => {
-        const source = spectator.service.authentiationState$;
+        const source = spectator.service.authenticationState$;
         const expected = m.cold('a', { a: initialState });
         m.expect(source).toBeObservable(expected);
     }));
 
     it('should revice new States when setAuthenticationState is called', marbles(m => {
         spectator.service.setAuthenticationState(newState);
-        const source = spectator.service.authentiationState$;
+        const source = spectator.service.authenticationState$;
         const expected = m.cold('a', { a: newState });
         m.expect(source).toBeObservable(expected);
     }));

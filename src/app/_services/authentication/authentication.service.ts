@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { IAuthenticationHttp } from 'src/app/_models/authentication.interface';
+
 import { Observable, throwError } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { IAuthentication } from 'src/app/_models/authentication.interface';
-import { AuthenticationStore, IAuthenticationState } from 'src/app/_store/authentication/auth.store.service';
-import { isCorrectToken } from 'src/app/_core-functions/core-functions';
-import { FacadesModule } from 'src/app/_facades/facades.module';
+import { environment } from '../../../environments/environment';
+import { AuthenticationStore, IAuthenticationState } from '../../_stores/authentication/auth.store.service';
+import { IAuthentication, IAuthenticationHttp } from '../../_models/authentication.interface';
+import { isCorrectToken } from '../../_core-functions/core-functions';
+
 
 @Injectable()
 export class AuthenticationService {
@@ -32,7 +32,7 @@ export class AuthenticationService {
         );
     }
 
-    login() {
+    public login() {
         console.log('LOGIN');
         this.getToken().subscribe(
             authentication => {
@@ -46,7 +46,7 @@ export class AuthenticationService {
         );
     }
 
-    logout() {
+    public logout() {
         console.log('LOGOUT');
         const state = {
             token: null,

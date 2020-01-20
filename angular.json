@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "template-app": {
+    "template": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,12 +17,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/template-app",
+            "outputPath": "dist/template",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets",
@@ -70,18 +70,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "template-app:build"
+            "browserTarget": "template:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "template-app:build:production"
+              "browserTarget": "template:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "template-app:build"
+            "browserTarget": "template:build"
           }
         },
         "lint": {
@@ -101,16 +101,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "template-app:serve"
+            "devServerTarget": "template:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "template-app:serve:production"
+              "devServerTarget": "template:serve:production"
             }
           }
         }
       }
-    }
-  },
-  "defaultProject": "template-app"
+    }},
+  "defaultProject": "template"
 }
