@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthenticationStore } from '../../_stores/authentication/auth.store.service';
+import { AuthenticationStore, IAuthenticationState } from '../../_stores/authentication/auth.store.service';
 import { AuthenticationService } from '../../_services/authentication/authentication.service';
 
 @Injectable({
@@ -15,10 +15,26 @@ export class AuthenticationFacade {
     ) { }
 
     public login() {
-        this._service.login();
+        this._service.getToken().subscribe(
+            authentication => {
+                console.log('LOGIN');
+                const state = {
+                    token: authentication.token,
+                    isLoggedIn: true
+                } as IAuthenticationState;
+                this._store.setAuthenticationState(state);
+            },
+            // err => {},
+            // () => console.log('LOGIN COMPLETED')
+        );
     }
 
     public logout() {
-        this._service.logout();
+        console.log('LOGOUT');
+        const state = {
+            token: null,
+            isLoggedIn: false
+        } as IAuthenticationState;
+        this._store.setAuthenticationState(state);
     }
 }

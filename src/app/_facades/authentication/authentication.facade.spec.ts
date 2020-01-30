@@ -1,9 +1,9 @@
 import { AuthenticationFacade } from './authentication.facade';
 import { SpyObject } from '@ngneat/spectator';
 import { SpectatorHttp, createHttpFactory } from '@ngneat/spectator/jest';
-import { AuthenticationStore } from '../../_stores/authentication/auth.store.service';
+import { AuthenticationStore,IAuthenticationState } from '../../_stores/authentication/auth.store.service';
 import { AuthenticationService } from '../../_services/authentication/authentication.service';
-
+import { of } from 'rxjs';
 
 describe('Authentication Facade', () => {
 
@@ -22,22 +22,56 @@ describe('Authentication Facade', () => {
     };
 
     let spectator: SpectatorHttp<AuthenticationFacade>;
-    let store: SpyObject<AuthenticationStore>;
+    let login: jest.Mock<void, []>;
+    let logout: jest.Mock<void, []>;
     const createService = createHttpFactory({
         service: AuthenticationFacade,
-        mocks: [
-            AuthenticationStore,
-            AuthenticationService
-        ]
+        providers: [
+            {
+                provide: AuthenticationStore,
+                useValue: {
+                    authenticationState$: of(initialState),
+                    setAuthenticationState: jest.fn()
+                }
+            },
+            {
+                provide: AuthenticationService,
+                useValue: {
+                    login: jest.fn(),
+                    logout: jest.fn()
+                }
+            }
+        ],
     });
 
     beforeEach(() => {
         spectator = createService();
-        store = spectator.get<AuthenticationStore>(AuthenticationStore);
+        login = jest.fn(() => spectator.get(AuthenticationStore).setAuthenticationState(newState));
+        logout = jest.fn(() => spectator.get(AuthenticationStore).setAuthenticationState(initialState));
     });
 
     it('should create', () => {
         expect(spectator.service).toBeTruthy();
+    });
+
+    it('should call service.login()', () => {
+        const spyOnLogin = jest.spyOn(spectator.get(AuthenticationService), 'login').mockImplementationOnce(login);
+        const spyOnSetAuthenticationState = jest.spyOn(
+            spectator.get(AuthenticationStore), 'setAuthenticationState'
+        );
+        spectator.service.login();
+        expect(spyOnLogin).toHaveBeenCalled();
+        expect(spyOnSetAuthenticationState).toHaveBeenCalledWith(newState);
+    });
+
+    it('should call service.logout()', () => {
+        const spyOnLogout = jest.spyOn(spectator.get(AuthenticationService), 'logout').mockImplementationOnce(logout);
+        const spyOnSetAuthenticationState = jest.spyOn(
+            spectator.get(AuthenticationStore), 'setAuthenticationState'
+        );
+        spectator.service.logout();
+        expect(spyOnLogout).toHaveBeenCalled();
+        expect(spyOnSetAuthenticationState).toHaveBeenCalledWith(initialState);
     });
 
 });

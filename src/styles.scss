@@ -1,6 +1,14 @@
 /* You can add global styles to this file, and also import other style files
 YOU NEED TO CHANGE BULMA STYLES VARIABLES BEFORE IMPORTING BULMA */
 
+@import "../src/assets/scss/_overrides/_base";
+@import "../src/assets/scss/_overrides/_components";
+@import "../src/assets/scss/_overrides/_elements";
+@import "../src/assets/scss/_overrides/_form";
+@import "../src/assets/scss/_overrides/_grid";
+@import "../src/assets/scss/_overrides/_layout";
+@import "../src/assets/scss/_overrides/_utilities";
+
 @import "../node_modules/bulma/sass/utilities/_all";
 @import "../node_modules/bulma/sass/base/_all";
 @import "../node_modules/bulma/sass/elements/_all";

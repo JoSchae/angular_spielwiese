@@ -22,6 +22,6 @@ export function mapError(error: Error): IError {
 //     });
 // }
 
-export function isCorrectToken(token: string) {
+export function isCorrectTokenPattern(token: string) {
     return token.match(/([^& %]){10}\.([^& %]{32})\.([^& %]{10})\w/g);
 }
