@@ -7,13 +7,21 @@ const authenticationReducerInternal = createReducer(
     on(
         AuthenticationActions.getAuthenticationSuccess, (state, { payload: authentication }) => ({
             ...state,
-            authentication
+            token: authentication.token,
+            isLoggedIn: authentication.isLoggedIn
         })
     ),
     on(
         AuthenticationActions.getAuthenticationFailure, (state, action) => ({
             ...state,
-            error: action.payload
+            // error: action.payload
+        })
+    ),
+    on(
+        AuthenticationActions.logout, (state) => ({
+            ...state,
+            token: null,
+            isLoggedIn: false
         })
     )
 );

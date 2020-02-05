@@ -5,20 +5,20 @@ const selectAuthenticationState = createFeatureSelector<IAuthenticationState>('a
 
 export const selectAuthentication = createSelector(
     selectAuthenticationState,
-    authentication => authentication.authentication
+    authentication => authentication
 );
 
 export const selectToken = createSelector(
     selectAuthenticationState,
-    authentication => authentication.authentication.token
+    authentication => authentication.token
 );
 
 export const selectIsLoggedIn = createSelector(
     selectAuthenticationState,
-    authentication => authentication.authentication.isLoggedIn
+    authentication => authentication.isLoggedIn
 );
 
-export const selectError = createSelector(
-    selectAuthenticationState,
-    authentication => authentication.error
-);
+// export const selectError = createSelector(
+//     selectAuthenticationState,
+//     authentication => authentication.error
+// );

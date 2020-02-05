@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AuthenticationStore, IAuthenticationState } from '../../_stores/authentication/auth.store.service';
 import { AuthenticationService } from '../../_services/authentication/authentication.service';
+import { Store, select } from '@ngrx/store';
+import { getAuthentication, logout } from 'src/app/_ngrx/actions/authentication.actions';
+import { selectAuthentication } from 'src/app/_ngrx/selectors/authentication.selectors';
 
 @Injectable({
     providedIn: 'root'
@@ -8,10 +11,12 @@ import { AuthenticationService } from '../../_services/authentication/authentica
 export class AuthenticationFacade {
 
     public readonly authenticationState$ = this._store.authenticationState$;
+    public readonly authenticationNGRXState = this._ngrx.pipe(select(selectAuthentication));
 
     constructor(
         private _store: AuthenticationStore,
-        private _service: AuthenticationService
+        private _service: AuthenticationService,
+        private _ngrx: Store<IAuthenticationState>
     ) { }
 
     public login() {
@@ -36,5 +41,13 @@ export class AuthenticationFacade {
             isLoggedIn: false
         } as IAuthenticationState;
         this._store.setAuthenticationState(state);
+    }
+
+    public loginNGRX() {
+        this._ngrx.dispatch(getAuthentication());
+    }
+
+    public logoutNGRX() {
+        this._ngrx.dispatch(logout());
     }
 }
