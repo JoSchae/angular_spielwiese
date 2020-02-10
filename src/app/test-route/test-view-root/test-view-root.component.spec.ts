@@ -1,6 +1,6 @@
 import { TestViewRootComponent } from './test-view-root.component';
 import { SpectatorRouting, createRoutingFactory } from '@ngneat/spectator/jest';
-import { TestViewModule } from '../test-view.module';
+import { TestViewModule } from '../test-route.module';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('TestViewRootComponent', () => {

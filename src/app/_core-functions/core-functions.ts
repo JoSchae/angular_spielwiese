@@ -10,18 +10,10 @@ export function mapError(error: Error): IError {
     return mappedError;
 }
 
-// export function mapTestData(response: ITestDataHttp): ITestData[] {
-//     return response.data.map<ITestData>(data => {
-//         return {
-//             id: data.id,
-//             vorname: data.vorname,
-//             nachname: data.nachname,
-//             alter: data.alter,
-//             hobbies: data.hobbies.split(',')
-//         };
-//     });
-// }
-
+/**
+ * Returns true if the given string hast the correct regex-pattern, false otherwise.
+ * @param token a token-string
+ */
 export function isCorrectTokenPattern(token: string) {
     return token.match(/([^& %]){10}\.([^& %]{32})\.([^& %]{10})\w/g);
 }

@@ -1,27 +1,18 @@
-# Template
+# Tempalte For Angular Apps
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
+This Project is a starting point for an up-to-date angular app. It will be continously updated with the newest compatible version of every used framework.
 
-## Development server
+## Used Frameworks
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Angular
+    - ng serve (use ng serve -c `<environment>` for `<environment>`-configurations)
+- Jest (Testing Framework. Replaces Karma)
+    - `npx jest --watch`
+- Spectator (For easier test writing)
+- Ngrx (if you want to build an enterprise-scale app)
 
-## Code scaffolding
+## Already built-in
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- simple state-store with rxjs (use it, if you want to build small to medium sized app)
+- simple state-store with ngrx (use it, if you want to build an enterprise-size app)
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

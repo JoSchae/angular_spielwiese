@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { TestViewRoutingModule } from './test-view-routing.module';
+import { TestViewRoutingModule } from './test-route-routing.module';
 import { TestViewRootComponent } from './test-view-root/test-view-root.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

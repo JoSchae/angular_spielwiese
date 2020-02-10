@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  integration: false,
 
   apiUrl: 'http://localhost:4200/assets/test_data',
 

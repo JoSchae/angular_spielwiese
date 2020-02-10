@@ -29,8 +29,6 @@ export class AuthenticationFacade {
                 } as IAuthenticationState;
                 this._store.setAuthenticationState(state);
             },
-            // err => {},
-            // () => console.log('LOGIN COMPLETED')
         );
     }
 
