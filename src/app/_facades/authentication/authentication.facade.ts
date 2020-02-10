@@ -10,7 +10,13 @@ import { selectAuthentication } from 'src/app/_ngrx/selectors/authentication.sel
 })
 export class AuthenticationFacade {
 
+    /**
+     * Authentication State Observable
+     */
     public readonly authenticationState$ = this._store.authenticationState$;
+    /**
+     * Authentication State Observable
+     */
     public readonly authenticationNGRXState = this._ngrx.pipe(select(selectAuthentication));
 
     constructor(
@@ -19,6 +25,9 @@ export class AuthenticationFacade {
         private _ngrx: Store<IAuthenticationState>
     ) { }
 
+    /**
+     * Logs the user in
+     */
     public login() {
         this._service.getToken().subscribe(
             authentication => {
@@ -32,6 +41,9 @@ export class AuthenticationFacade {
         );
     }
 
+    /**
+     * Logs the user out
+     */
     public logout() {
         console.log('LOGOUT');
         const state = {
@@ -41,10 +53,16 @@ export class AuthenticationFacade {
         this._store.setAuthenticationState(state);
     }
 
+    /**
+     * Logs the user in
+     */
     public loginNGRX() {
         this._ngrx.dispatch(getAuthentication());
     }
 
+    /**
+     * Logs the user out
+     */
     public logoutNGRX() {
         this._ngrx.dispatch(logout());
     }
