@@ -45,6 +45,7 @@ import { interceptors } from './_interceptors';
             strictActionSerializability: true
         }
     }),
+
     EffectsModule.forRoot(effects),
     StoreRouterConnectingModule.forRoot({ routerState: RouterState.Minimal, stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : []
