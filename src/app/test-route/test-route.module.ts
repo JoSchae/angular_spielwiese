@@ -9,16 +9,12 @@ import { LoginViewComponent } from './child-components/login/_view/login-view.co
 import { BrowserModule } from '@angular/platform-browser';
 import { FacadesModule } from '../_facades/facades.module';
 import { AuthenticationFacade } from '../_facades/authentication/authentication.facade';
-import { LoginNGRXViewComponent } from './child-components/loginNGRX/_view/login-ngrx-view/login-ngrx-view.component';
-import { LoginNGRXComponent } from './child-components/loginNGRX/loginNGRX.component';
 
 @NgModule({
     declarations: [
         TestViewRootComponent,
         LoginComponent,
         LoginViewComponent,
-        LoginNGRXComponent,
-        LoginNGRXViewComponent
     ],
     imports: [
         BrowserModule,

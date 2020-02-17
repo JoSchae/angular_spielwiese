@@ -6,7 +6,6 @@ import { LoginViewComponent } from './_view/login-view.component';
 import { AuthenticationFacade } from 'src/app/_facades/authentication/authentication.facade';
 import { of } from 'rxjs';
 import { provideMockStore } from '@ngrx/store/testing';
-import { initialAppState } from 'src/app/_ngrx/state/app.state';
 
 describe('LoginComponent', () => {
 
@@ -30,7 +29,6 @@ describe('LoginComponent', () => {
                     logout: jest.fn()
                 }
             },
-            provideMockStore({ initialState: initialAppState })
         ],
         mocks: [
             AuthenticationStore,
