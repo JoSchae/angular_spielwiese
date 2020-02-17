@@ -1,11 +1,8 @@
 import { AuthenticationFacade } from './authentication.facade';
-import { SpyObject } from '@ngneat/spectator';
 import { SpectatorHttp, createHttpFactory, mockProvider } from '@ngneat/spectator/jest';
-import { AuthenticationStore, IAuthenticationState } from '../../_stores/authentication/auth.store.service';
+import { AuthenticationStore } from '../../_stores/authentication/auth.store.service';
 import { AuthenticationService } from '../../_services/authentication/authentication.service';
 import { of } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 describe('Authentication Facade', () => {
 
