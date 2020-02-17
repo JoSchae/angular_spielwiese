@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { AuthenticationStore } from '../_stores/authentication/auth.store.service';
 import { AuthenticationService } from '../_services/authentication/authentication.service';
 
 @NgModule({
@@ -7,7 +6,6 @@ import { AuthenticationService } from '../_services/authentication/authenticatio
     imports: [],
     exports: [],
     providers: [
-        AuthenticationStore,
         AuthenticationService
     ]
 })

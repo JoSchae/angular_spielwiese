@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { AuthenticationStore, IAuthenticationState } from '../../_stores/authentication/auth.store.service';
 import { IAuthentication, IAuthenticationHttp } from '../../_models/authentication.interface';
 import { isCorrectTokenPattern } from '../../_core-functions/core-functions';
 

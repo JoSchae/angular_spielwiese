@@ -6,7 +6,6 @@ import { of } from 'rxjs';
 import { provideMockStore } from '@ngrx/store/testing';
 import { initialAppState } from 'src/app/_ngrx/state/app.state';
 import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
-import { AuthenticationStore } from 'src/app/_stores/authentication/auth.store.service';
 
 describe('LoginNGRXComponent', () => {
 
@@ -33,7 +32,6 @@ describe('LoginNGRXComponent', () => {
             provideMockStore({ initialState: initialAppState })
         ],
         mocks: [
-            AuthenticationStore,
             AuthenticationService,
         ]
     });
